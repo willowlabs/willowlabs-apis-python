@@ -1,0 +1,239 @@
+syntax = "proto3";
+
+package willowlabs.services.company_information;
+
+service CompanyInformation {
+  rpc get_company_ownership(OwnershipRequest) returns (OwnershipResponse) {}
+  rpc get_company_roles(RoleRequest) returns (RoleResponse) {}
+  rpc get_basic_company_information(BasicCompanyInformationRequest) returns (BasicCompanyInformationResponse) {}
+}
+
+enum ShareClass {
+  UNKNOWN_SHARE_CLASS = 0;
+  ORDINARY_SHARES = 1;
+  CLASS_A = 2;
+  CLASS_B = 3;
+  CLASS_C = 4;
+  CLASS_D = 5;
+  CLASS_E = 6;
+  CLASS_F = 7;
+  CLASS_G = 8;
+  CLASS_H = 9;
+  CLASS_I = 10;
+  PREFERRED_SHARES = 11;
+  EXTRAORDINARY_SHARES = 12;
+  ISIN = 13;
+}
+
+message DirectOwnership {
+  int32 shares = 1;
+  ShareClass share_class = 2;
+}
+
+message IndividualOwner {
+  string name = 1;
+  int32 birth_year = 2;
+  string postal_code = 3;
+  string postal_city = 4;
+  float percent_share = 5;
+  float equivalent_shares = 6;
+  int32 min_depth = 7;
+  int32 max_depth = 8;
+  repeated DirectOwnership direct_ownership = 9;
+}
+
+message UnknownOwner {
+  string postal_code = 1;
+  string postal_city = 2;
+  float percent_share = 3;
+  float equivalent_shares = 4;
+  repeated DirectOwnership direct_ownership = 5;
+}
+
+message OwnershipRequest {
+  int32 organisation_number = 1;
+  int32 record_year = 2;
+  float cutoff = 3;
+  int32 depth = 4;
+  int32 top = 5;
+  bool exhaustive = 6;
+}
+
+message CompanyShares {
+  int32 organisation_number = 1;
+  string company_name = 2;
+  string isin = 3;
+  int64 total_shares = 4;
+  repeated IndividualOwner individual_owners = 5;
+  repeated UnknownOwner unknown_owners = 6;
+  bool exhaustive = 7;
+}
+
+message OwnershipResponse {
+  OwnershipRequest request = 1;
+  repeated CompanyShares company_shares = 2;
+  bool bad_request = 3;
+  bool server_error = 4;
+  Timestamp response_timestamp = 5;
+}
+
+message Date {
+  int32 year = 1;
+  int32 month = 2;
+  int32 day = 3;
+}
+
+message Timestamp {
+  int32 year = 1;
+  int32 month = 2;
+  int32 day = 3;
+  int32 hour = 4;
+  int32 minute = 5;
+  int32 second = 6;
+  int32 microsecond = 7;
+  int32 timezone = 8;
+}
+
+message RoleRequest {
+  int32 organisation_number = 1;
+  Date query_date = 2;
+}
+
+message Address {
+  string street_address = 1;
+  string city = 2;
+  string postal_code = 3;
+  string country = 4;
+}
+
+enum Role {
+  UNKNOWN_ROLE = 0;
+  CEO = 1;
+  CHAIRMAN = 2;
+  DEPUTY_CHAIRMAN = 3;
+  BOARD_MEMBER = 4;
+  DEPUTY_BOARD_MEMBER = 5;
+}
+
+enum SpecialRole {
+  NO_SPECIAL_ROLE = 0;
+  EMPLOYEE_REPRESENTATIVE = 1;
+  A_SHARE_REPRESENTATIVE = 2;
+}
+
+enum RoleAction {
+  NO_ACTION = 0;
+  RESIGNED = 1;
+  EXPIRED = 2;
+}
+
+message CompanyOfficer {
+  string name = 1;
+  int32 birth_year = 2;
+  Address address = 3;
+  Role role = 4;
+  SpecialRole special_role = 5;
+  RoleAction role_action = 6;
+  Date announcement_date = 7;
+}
+
+message RoleResponse {
+  RoleRequest request = 1;
+  repeated CompanyOfficer officers = 2;
+  bool complete_ceo_search = 3;
+  bool complete_board_search = 4;
+  bool bad_request = 5;
+  bool server_error = 6;
+  Timestamp response_timestamp = 7;
+}
+
+message SectorCode {
+  int32 code = 1;
+  string description_en = 2;
+  string description_nb = 3;
+}
+
+message NACECode {
+  string code = 1;
+  string description_en = 2;
+  string description_nb = 3;
+  string level1_code = 4;
+  string level1_description_en = 5;
+  string level1_description_nb = 6;
+  string level2_code = 7;
+  string level2_description_en = 8;
+  string level2_description_nb = 9;
+  string level3_code = 10;
+  string level3_description_en = 11;
+  string level3_description_nb = 12;
+  string level4_code = 13;
+  string level4_description_en = 14;
+  string level4_description_nb = 15;
+}
+
+message CompanyType {
+  string code = 1;
+  string description_en = 2;
+  string description_nb = 3;
+}
+
+message NonprofitRegistration {
+  bool registered_as_nonprofit = 1;
+  repeated string vat_registration_description_en = 2;
+  repeated string vat_registration_description_nb = 3;
+}
+
+message CompanyAddress {
+  repeated string street_address = 1;
+  string city = 2;
+  string postal_code = 3;
+  string county = 4;
+  string county_number = 5;
+  string country = 6;
+  string country_code = 7;
+}
+
+message BasicCompanyInformation {
+  int32 organisation_number = 1;                    // Organisasjonsnummer
+  string company_name = 2;                          // Navn
+  Date founded_date = 3;                            // Stiftelsesdato
+  Date registration_date = 4;                       // Segistreringsdato Enhetsregisteret
+  CompanyType company_type = 5;                     // Organisasjonsform
+  string website = 6;                               // Hjemmeside
+  NonprofitRegistration nonprofit_registration= 7;  // Frivillighetsregisteret & MVA Registrert Beskrivelser
+  bool registered_in_vat_registry = 8;              // MVA Registeret
+  bool registered_in_business_registry = 9;         // Foretaksregisteret
+  bool registered_in_foundation_registry = 10;      // Stiftelsesregisteret
+  int32 number_of_employees = 11;                   // Antall Ansatte
+  SectorCode institutional_sector_code = 12;        // Institusjonell Sektorkode
+  NACECode industry_code_1 = 13;                    // Naeringskode
+  NACECode industry_code_2 = 14;
+  NACECode industry_code_3 = 15;
+  CompanyAddress postal_address = 16;               // Postadresse
+  CompanyAddress business_address = 17;             // Forretningsadresse
+  int32 last_submitted_annual_accounts = 18;        // Siste Innsendte Aarsregnskap
+  bool bankrupt = 19;                               // Konkurs
+  bool under_liquidation = 20;                      // Avvikling
+  bool under_forced_liquidation_or_dissolution = 21;    // Tvangsavvikling eller Tvangsopplosning
+  int32 parent_company = 22;                        // Overordnet Enhet
+  string language = 23;                             // Maalform
+  Date commencement_date = 24;                      // Oppstartsdato
+  Date closure_date = 25;                           // Nedleggelsesdato
+  Date ownership_date = 26;                         // dato Eierskifte
+  CompanyAddress location_address = 27;             // Beliggenhetsadresse
+  Date record_first_retrieved = 28;
+  bool most_recent_record = 29;
+}
+
+message BasicCompanyInformationRequest {
+  int32 organisation_number = 1;
+  Date query_date = 2;
+}
+
+message BasicCompanyInformationResponse {
+  BasicCompanyInformationRequest request = 1;
+  BasicCompanyInformation basic_company_information = 2;
+  bool bad_request = 3;
+  bool server_error = 4;
+  Timestamp response_timestamp = 5;
+}
