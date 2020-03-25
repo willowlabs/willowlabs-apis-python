@@ -6,6 +6,8 @@ service CompanyInformation {
   rpc get_company_ownership(OwnershipRequest) returns (OwnershipResponse) {}
   rpc get_company_roles(RoleRequest) returns (RoleResponse) {}
   rpc get_basic_company_information(BasicCompanyInformationRequest) returns (BasicCompanyInformationResponse) {}
+  rpc get_company_signatory_information(SignatoryInformationRequest) returns (SignatoryInformationResponse) {}
+  rpc get_company_power_of_attorney_information(SignatoryInformationRequest) returns (SignatoryInformationResponse) {}
 }
 
 enum ShareClass {
@@ -236,4 +238,23 @@ message BasicCompanyInformationResponse {
   bool bad_request = 3;
   bool server_error = 4;
   Timestamp response_timestamp = 5;
+}
+
+message SignatoryInformationRequest {
+  int32 organisation_number = 1;
+  Date query_date = 2;
+}
+
+message AuthorizedSignature {
+  string signatory_text_nb = 1;
+  string signatory_text_en = 2;
+}
+
+message SignatoryInformationResponse {
+  SignatoryInformationRequest request = 1;
+  repeated AuthorizedSignature authorized_signatures = 2;
+  bool no_signatory_records_found = 3;
+  bool bad_request = 4;
+  bool server_error = 5;
+  Timestamp response_timestamp = 6;
 }

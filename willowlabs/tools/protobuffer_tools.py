@@ -1,6 +1,13 @@
 from google.protobuf.json_format import MessageToDict
 from datetime import date, datetime
-from typing import Any, Dict, Union
+from typing import Any, Dict, Optional, Union
+from willowlabs.service_grpc.company_information import company_information_service_pb2 as pb2
+
+
+def date_to_pb2_date(d: Union[date, datetime, None]) -> Optional[pb2.Date]:
+    if d is None:
+        return None
+    return pb2.Date(year=d.year, month=d.month, day=d.day)
 
 
 def to_dict(message, **kwargs: Any) -> Union[Dict[str, Any], date, datetime]:
