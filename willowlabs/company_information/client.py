@@ -4,6 +4,7 @@ import grpc
 from time import time
 from datetime import date, datetime
 from willowlabs.tools import tools
+from willowlabs.tools.protobuffer_tools import to_dict
 from willowlabs.service_grpc.company_information import company_information_service_pb2 as pb2, company_information_service_pb2_grpc as pb2_grpc
 from typing import Any, Optional, Union
 
@@ -28,6 +29,7 @@ class CompanyInformationClient:
         self.api_key = None
         self.timeout = kwargs.get("timeout", 60)        # Seconds
         self.scopes = ["https://www.googleapis.com/auth/cloud-platform"]
+        self.return_dict = kwargs.get("return_dict", False)
 
     def load_configuration(self):
         self.configuration = tools.load_client_configuration(self.configuration_path)
@@ -66,7 +68,7 @@ class CompanyInformationClient:
             request = pb2.OwnershipRequest(organisation_number=organisation_number, record_year=record_year,
                                            depth=depth, cutoff=cutoff, top=top)
             ownership_information = stub.get_company_ownership(request, self.timeout, metadata=metadata)
-        return ownership_information
+        return to_dict(ownership_information) if self.return_dict else ownership_information
 
     def get_company_roles(self, organisation_number: int, query_date: date) -> pb2.RoleResponse:
         if self.jwt is None or self.jwt_expires is None or self.jwt_expires < time():
@@ -77,7 +79,7 @@ class CompanyInformationClient:
             request = pb2.RoleRequest(organisation_number=organisation_number,
                                       query_date=date_to_pb2_date(query_date))
             roles = stub.get_company_roles(request, self.timeout, metadata=metadata)
-        return roles
+        return to_dict(roles) if self.return_dict else roles
 
     def get_basic_company_information(self, organisation_number: int,
                                       query_date: Optional[date] = None) -> pb2.BasicCompanyInformationResponse:
@@ -89,4 +91,4 @@ class CompanyInformationClient:
             request = pb2.BasicCompanyInformationRequest(organisation_number=organisation_number,
                                                          query_date=date_to_pb2_date(query_date))
             results = stub.get_basic_company_information(request, self.timeout, metadata=metadata)
-        return results
+        return to_dict(results) if self.return_dict else results
