@@ -96,7 +96,18 @@ class CompanyInformationClient:
         with grpc.secure_channel(self.host, grpc.ssl_channel_credentials()) as channel:
             stub = pb2_grpc.CompanyInformationStub(channel)
             metadata = [("authorization", f"Bearer {self.jwt}"), ("x-api-key", self.api_key)]
-            request = pb2.BasicCompanyInformationRequest(organisation_number=organisation_number,
-                                                         query_date=pb_tools.date_to_pb2_date(query_date))
-            results = stub.get_basic_company_information(request, self.timeout, metadata=metadata)
+            request = pb2.SignatoryInformationRequest(organisation_number=organisation_number,
+                                                      query_date=pb_tools.date_to_pb2_date(query_date))
+            results = stub.get_company_signatory_information(request, self.timeout, metadata=metadata)
+        return results
+
+    @check_jwt
+    def get_company_power_of_attorney_information(self, organisation_number: int,
+                                                  query_date: Optional[date] = None) -> pb2.SignatoryInformationResponse:
+        with grpc.secure_channel(self.host, grpc.ssl_channel_credentials()) as channel:
+            stub = pb2_grpc.CompanyInformationStub(channel)
+            metadata = [("authorization", f"Bearer {self.jwt}"), ("x-api-key", self.api_key)]
+            request = pb2.SignatoryInformationRequest(organisation_number=organisation_number,
+                                                      query_date=pb_tools.date_to_pb2_date(query_date))
+            results = stub.get_company_power_of_attorney_information(request, self.timeout, metadata=metadata)
         return results
