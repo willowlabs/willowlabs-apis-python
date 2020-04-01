@@ -5,7 +5,7 @@ from time import time
 from datetime import date
 from willowlabs.tools import tools, protobuffer_tools as pb_tools
 from willowlabs.service_grpc.company_information import company_information_service_pb2 as pb2, company_information_service_pb2_grpc as pb2_grpc
-from typing import Any, Optional
+from typing import Any, Optional, Union
 
 
 def check_jwt(f):
@@ -92,22 +92,49 @@ class CompanyInformationClient:
 
     @check_jwt
     def get_company_signatory_information(self, organisation_number: int,
+                                          authority_type: Union[str, pb2.SignatoryAuthorityTypes],
                                           query_date: Optional[date] = None) -> pb2.SignatoryInformationResponse:
+        if isinstance(authority_type, str):
+            try:
+                authority_type = getattr(pb2.SignatoryAuthorityTypes, authority_type.upper())
+            except AttributeError:
+                raise ValueError(f"Unknown authority type '{authority_type}'. Authority type must be among "
+                                 f"'POWER_OF_ATTORNEY', 'PROKURA', 'FULL_SIGNATORY_AUTHORITY', or 'SIGNATUR'.")
+
+        if authority_type == pb2.SignatoryAuthorityTypes.UNKNOWN_AUTHORITY:
+            raise ValueError(f"Authority type may not be UNKNOWN_AUTHORITY.")
+
         with grpc.secure_channel(self.host, grpc.ssl_channel_credentials()) as channel:
             stub = pb2_grpc.CompanyInformationStub(channel)
             metadata = [("authorization", f"Bearer {self.jwt}"), ("x-api-key", self.api_key)]
             request = pb2.SignatoryInformationRequest(organisation_number=organisation_number,
+                                                      authority_type=authority_type,
                                                       query_date=pb_tools.date_to_pb2_date(query_date))
             results = stub.get_company_signatory_information(request, self.timeout, metadata=metadata)
         return results
 
     @check_jwt
-    def get_company_power_of_attorney_information(self, organisation_number: int,
-                                                  query_date: Optional[date] = None) -> pb2.SignatoryInformationResponse:
-        with grpc.secure_channel(self.host, grpc.ssl_channel_credentials()) as channel:
-            stub = pb2_grpc.CompanyInformationStub(channel)
-            metadata = [("authorization", f"Bearer {self.jwt}"), ("x-api-key", self.api_key)]
-            request = pb2.SignatoryInformationRequest(organisation_number=organisation_number,
-                                                      query_date=pb_tools.date_to_pb2_date(query_date))
-            results = stub.get_company_power_of_attorney_information(request, self.timeout, metadata=metadata)
-        return results
+    def get_company_power_of_attorney(self, organisation_number: int,
+                                      query_date: Optional[date] = None) -> pb2.SignatoryInformationResponse:
+        return self.get_company_signatory_information(organisation_number,
+                                                      pb2.SignatoryAuthorityTypes.POWER_OF_ATTORNEY,
+                                                      query_date=query_date)
+
+    @check_jwt
+    def get_company_full_signatory_authority(self, organisation_number: int,
+                                             query_date: Optional[date] = None) -> pb2.SignatoryInformationResponse:
+        return self.get_company_signatory_information(organisation_number,
+                                                      pb2.SignatoryAuthorityTypes.FULL_SIGNATORY_AUTHORITY,
+                                                      query_date=query_date)
+
+    @check_jwt
+    def get_company_prokura(self, organisation_number: int,
+                            query_date: Optional[date] = None) -> pb2.SignatoryInformationResponse:
+        return self.get_company_signatory_information(organisation_number, pb2.SignatoryAuthorityTypes.PROKURA,
+                                                      query_date=query_date)
+
+    @check_jwt
+    def get_company_signatur(self, organisation_number: int,
+                             query_date: Optional[date] = None) -> pb2.SignatoryInformationResponse:
+        return self.get_company_signatory_information(organisation_number, pb2.SignatoryAuthorityTypes.SIGNATUR,
+                                                      query_date=query_date)
