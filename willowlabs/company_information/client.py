@@ -92,7 +92,7 @@ class CompanyInformationClient:
 
     @check_jwt
     def get_company_signatory_information(self, organisation_number: int,
-                                          authority_type: Union[str, pb2.SignatoryAuthorityTypes],
+                                          authority_type: Union[str, int],
                                           query_date: Optional[date] = None) -> pb2.SignatoryInformationResponse:
         if isinstance(authority_type, str):
             try:
