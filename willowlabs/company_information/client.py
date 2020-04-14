@@ -21,14 +21,12 @@ def _check_jwt(f):
 
 class CompanyInformationClient:
     """
-    TEST
+    Class to access Willow Labs API.
+    :param configuration_path: The path of the configuration file.
+    :param kwargs: Ekstra parameters. - Timeout, service_type, return_dict
     """
-    def __init__(self, configuration_path: str, **kwargs: Any):
-        """
 
-        :param configuration_path:
-        :param kwargs:
-        """
+    def __init__(self, configuration_path: str, **kwargs: Any):
         self.configuration_path = configuration_path
         self.configuration = None
         self.service_type = kwargs.get("service_type", "production")
