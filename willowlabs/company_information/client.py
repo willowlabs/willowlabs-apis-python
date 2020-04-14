@@ -10,13 +10,14 @@ from functools import wraps
 
 
 def _check_jwt(f):
-    @wraps(f)  # Needed to get the right function
+    @wraps(f)  # Needed to get the right function attributes and name
     def wrapped_function(self, *args, **kwargs):
         if self.jwt is None or self.jwt_expires is None or self.jwt_expires < time():
             self.get_json_web_token()
         return f(self, *args, *kwargs)
 
     return wrapped_function
+
 
 class CompanyInformationClient:
     """
