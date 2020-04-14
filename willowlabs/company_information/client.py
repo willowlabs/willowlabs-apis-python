@@ -8,6 +8,12 @@ from willowlabs.service_grpc.company_information import company_information_serv
 from typing import Any, Optional, Union
 
 
+"""
+main.py
+====================================
+The core module of my example project
+"""
+
 def check_jwt(f):
     def wrapped_function(self, *args, **kwargs):
         if self.jwt is None or self.jwt_expires is None or self.jwt_expires < time():
@@ -17,7 +23,15 @@ def check_jwt(f):
 
 
 class CompanyInformationClient:
+    """
+    TEST
+    """
     def __init__(self, configuration_path: str, **kwargs: Any):
+        """
+
+        :param configuration_path:
+        :param kwargs:
+        """
         self.configuration_path = configuration_path
         self.configuration = None
         self.service_type = kwargs.get("service_type", "production")
@@ -33,6 +47,9 @@ class CompanyInformationClient:
         self.return_dict = kwargs.get("return_dict", False)
 
     def load_configuration(self):
+        """
+        Loads the config
+        """
         self.configuration = tools.load_client_configuration(self.configuration_path)
         self.host = self.configuration["service"][self.service_type]["host"]
         self.issuer = self.configuration["authentication"]["issuer"]
@@ -51,6 +68,10 @@ class CompanyInformationClient:
             raise FileNotFoundError(f"Unable to find credentials in path {path}.")
 
     def get_json_web_token(self):
+        """
+        Get the token
+        :return:
+        """
         if self.credentials_info is None:
             self.load_credentials()
         token, expires = tools.generate_jwt_token_from_impersonated_account(self.credentials_info, self.audiences,
@@ -61,6 +82,15 @@ class CompanyInformationClient:
     @check_jwt
     def get_company_ownership(self, organisation_number: int, record_year: int, depth: int = 25, cutoff: float = 1.0,
                               top: int = 0) -> pb2.OwnershipResponse:
+        """
+        Get owners for a company.
+        :param organisation_number: Organization number for the company the structure is needed for.
+        :param record_year: The ownership year.
+        :param depth: How deep
+        :param cutoff: Minimum percentage of ownership for inclusion in result.
+        :param top: The number of max elements returned (The top N owners).
+        :return: The ownership structure.
+        """
         with grpc.secure_channel(self.host, grpc.ssl_channel_credentials()) as channel:
             stub = pb2_grpc.CompanyInformationStub(channel)
             metadata = [("authorization", f"Bearer {self.jwt}"), ("x-api-key", self.api_key)]
@@ -116,6 +146,12 @@ class CompanyInformationClient:
     @check_jwt
     def get_company_power_of_attorney(self, organisation_number: int,
                                       query_date: Optional[date] = None) -> pb2.SignatoryInformationResponse:
+        """
+        sadasd
+        :param organisation_number: sds
+        :param query_date: sdsa
+        :return: sda
+        """
         return self.get_company_signatory_information(organisation_number,
                                                       pb2.SignatoryAuthorityTypes.POWER_OF_ATTORNEY,
                                                       query_date=query_date)

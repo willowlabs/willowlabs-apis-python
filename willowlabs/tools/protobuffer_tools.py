@@ -4,6 +4,12 @@ from typing import Any, Dict, Optional, Union
 from willowlabs.service_grpc.company_information import company_information_service_pb2 as pb2
 
 
+"""
+main.py
+====================================
+The core module of my example project
+"""
+
 def date_to_pb2_date(d: Union[date, datetime, None]) -> Optional[pb2.Date]:
     if d is None:
         return None

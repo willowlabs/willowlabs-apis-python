@@ -1,20 +1,27 @@
-.. willowlabs-apis-python documentation master file, created by
-   sphinx-quickstart on Mon Apr  6 12:43:15 2020.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
 
-Welcome to willowlabs-apis-python's documentation!
+
+Welcome to Willow Labs Python API's documentation!
 ==================================================
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
+This library conatins APIs to connect to Willow Labs services.
+
+
+Client Module
+==================
+.. automodule:: willowlabs.company_information.client
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
 
 
 Indices and tables
 ==================
-
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
