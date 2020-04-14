@@ -8,20 +8,15 @@ from willowlabs.service_grpc.company_information import company_information_serv
 from typing import Any, Optional, Union
 from functools import wraps
 
-"""
-main.py
-====================================
-The core module of my example project
-"""
 
-def check_jwt(f):
-    @wraps(f) # Needed to get the right function 
+def _check_jwt(f):
+    @wraps(f)  # Needed to get the right function
     def wrapped_function(self, *args, **kwargs):
         if self.jwt is None or self.jwt_expires is None or self.jwt_expires < time():
             self.get_json_web_token()
         return f(self, *args, *kwargs)
-    return wrapped_function
 
+    return wrapped_function
 
 class CompanyInformationClient:
     """
@@ -46,6 +41,9 @@ class CompanyInformationClient:
         self.timeout = kwargs.get("timeout", 60)        # Seconds
         self.scopes = ["https://www.googleapis.com/auth/cloud-platform"]
         self.return_dict = kwargs.get("return_dict", False)
+
+
+
 
     def load_configuration(self):
         """
@@ -80,7 +78,7 @@ class CompanyInformationClient:
         self.jwt = token
         self.jwt_expires = expires
 
-    @check_jwt
+    @_check_jwt
     def get_company_ownership(self, organisation_number: int, record_year: int, depth: int = 25, cutoff: float = 1.0,
                               top: int = 0) -> pb2.OwnershipResponse:
         """
@@ -100,7 +98,7 @@ class CompanyInformationClient:
             ownership_information = stub.get_company_ownership(request, self.timeout, metadata=metadata)
         return ownership_information
 
-    @check_jwt
+    @_check_jwt
     def get_company_roles(self, organisation_number: int, query_date: date) -> pb2.RoleResponse:
         with grpc.secure_channel(self.host, grpc.ssl_channel_credentials()) as channel:
             stub = pb2_grpc.CompanyInformationStub(channel)
@@ -110,7 +108,7 @@ class CompanyInformationClient:
             roles = stub.get_company_roles(request, self.timeout, metadata=metadata)
         return roles
 
-    @check_jwt
+    @_check_jwt
     def get_basic_company_information(self, organisation_number: int,
                                       query_date: Optional[date] = None) -> pb2.BasicCompanyInformationResponse:
         with grpc.secure_channel(self.host, grpc.ssl_channel_credentials()) as channel:
@@ -121,7 +119,7 @@ class CompanyInformationClient:
             results = stub.get_basic_company_information(request, self.timeout, metadata=metadata)
         return results
 
-    @check_jwt
+    @_check_jwt
     def get_company_signatory_information(self, organisation_number: int,
                                           authority_type: Union[str, int],
                                           query_date: Optional[date] = None) -> pb2.SignatoryInformationResponse:
@@ -144,7 +142,7 @@ class CompanyInformationClient:
             results = stub.get_company_signatory_information(request, self.timeout, metadata=metadata)
         return results
 
-    @check_jwt
+    @_check_jwt
     def get_company_power_of_attorney(self, organisation_number: int,
                                       query_date: Optional[date] = None) -> pb2.SignatoryInformationResponse:
         """
@@ -157,20 +155,20 @@ class CompanyInformationClient:
                                                       pb2.SignatoryAuthorityTypes.POWER_OF_ATTORNEY,
                                                       query_date=query_date)
 
-    @check_jwt
+    @_check_jwt
     def get_company_full_signatory_authority(self, organisation_number: int,
                                              query_date: Optional[date] = None) -> pb2.SignatoryInformationResponse:
         return self.get_company_signatory_information(organisation_number,
                                                       pb2.SignatoryAuthorityTypes.FULL_SIGNATORY_AUTHORITY,
                                                       query_date=query_date)
 
-    @check_jwt
+    @_check_jwt
     def get_company_prokura(self, organisation_number: int,
                             query_date: Optional[date] = None) -> pb2.SignatoryInformationResponse:
         return self.get_company_signatory_information(organisation_number, pb2.SignatoryAuthorityTypes.PROKURA,
                                                       query_date=query_date)
 
-    @check_jwt
+    @_check_jwt
     def get_company_signatur(self, organisation_number: int,
                              query_date: Optional[date] = None) -> pb2.SignatoryInformationResponse:
         return self.get_company_signatory_information(organisation_number, pb2.SignatoryAuthorityTypes.SIGNATUR,
