@@ -6,7 +6,7 @@ from datetime import date
 from willowlabs.tools import tools, protobuffer_tools as pb_tools
 from willowlabs.service_grpc.company_information import company_information_service_pb2 as pb2, company_information_service_pb2_grpc as pb2_grpc
 from typing import Any, Optional, Union
-
+from functools import wraps
 
 """
 main.py
@@ -15,6 +15,7 @@ The core module of my example project
 """
 
 def check_jwt(f):
+    @wraps(f) # Needed to get the right function 
     def wrapped_function(self, *args, **kwargs):
         if self.jwt is None or self.jwt_expires is None or self.jwt_expires < time():
             self.get_json_web_token()
