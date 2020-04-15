@@ -1,10 +1,10 @@
 # willowlabs-apis-python
 Python client library for Willow Labs APIs
 
-## Installation:
+## Installation
 ``` Pip install -U willowlabs ```
 
-## Example usage:
+## Example usage
 ```
    import willowlabs as wl
    client = wl.CompanyInformationClient("client_config.yaml")
