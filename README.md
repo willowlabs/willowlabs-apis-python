@@ -1,4 +1,4 @@
-# willowlabs-apis-python
+# Willow Labs Python API
 Python client library for Willow Labs APIs
 
 ## Installation
