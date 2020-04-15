@@ -20,7 +20,7 @@ Python client library for Willow Labs APIs
 ### 0.3.0 (current) 
 Relased 15.04.2020.
 
-Added CompanyInformationClient to __init__ for easy import.
+Added CompanyInformationClient to \_\_init__ for easy import.
 
 ### 0.2.0 
 Relased 04.04.2020.
