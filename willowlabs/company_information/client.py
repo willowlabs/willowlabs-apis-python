@@ -179,14 +179,17 @@ class CompanyInformationClient:
     @_check_jwt
     def get_company_power_of_attorney(self, organisation_number: int,
                                       query_date: Optional[date] = None) -> pb2.SignatoryInformationResponse:
-        """Get the rights of attorney for the company. Same as Prokura.
+        """Get the power of attorney (prokura) for the company. Power of attorney is the signature rights for all daily operations.
+        See (in Norwegian): `Lovdata <https://lovdata.no/dokument/NL/lov/1985-06-21-80>`_ or `Wikipedia <https://no.wikipedia.org/wiki/Prokura>`_.
+
+        English version of :func:`~willowlabs.company_information.client.CompanyInformationClient.get_company_prokura`.
 
         Args:
             organisation_number: The organization number for the company being queried.
             query_date: Information retrieved will be the one valid at this date.
 
         Returns:
-            The rights of attorney for the given organization number.
+            The list of all prokuras.
         """
         return self.get_company_signatory_information(organisation_number,
                                                       pb2.SignatoryAuthorityTypes.POWER_OF_ATTORNEY,
@@ -195,14 +198,17 @@ class CompanyInformationClient:
     @_check_jwt
     def get_company_full_signatory_authority(self, organisation_number: int,
                                              query_date: Optional[date] = None) -> pb2.SignatoryInformationResponse:
-        """Get the information about full signature holders.
+        """ Get the signature holders for a company. Signature is the right to sign for the companies in all situations.
+        Extension of prokura which is only for daily operations.
+
+        English version of :func:`~willowlabs.company_information.client.CompanyInformationClient.get_company_signatur`.
 
         Args:
             organisation_number: The organization number for the company being queried.
-            query_date: Information retrieved will be the one valid at this date.
+            query_date: The date to get the signature for.
 
-        Returns:
-            The list of all signature holders for the organization number.
+        Returns: The signature holders.
+
         """
         return self.get_company_signatory_information(organisation_number,
                                                       pb2.SignatoryAuthorityTypes.FULL_SIGNATORY_AUTHORITY,
@@ -214,12 +220,14 @@ class CompanyInformationClient:
         """Get the prokura rights for the company. Prokura is the signature rights for all daily operations.
         See: `Lovdata <https://lovdata.no/dokument/NL/lov/1985-06-21-80>`_ or `Wikipedia <https://no.wikipedia.org/wiki/Prokura>`_.
 
+        Norwegian version of :func:`~willowlabs.company_information.client.CompanyInformationClient.get_company_power_of_attorney`.
+
         Args:
             organisation_number: The organization number for the company being queried.
             query_date: Information retrieved will be the one valid at this date.
 
         Returns:
-            The
+            The list of all prokuras.
         """
         return self.get_company_signatory_information(organisation_number, pb2.SignatoryAuthorityTypes.PROKURA,
                                                       query_date=query_date)
@@ -227,7 +235,10 @@ class CompanyInformationClient:
     @_check_jwt
     def get_company_signatur(self, organisation_number: int,
                              query_date: Optional[date] = None) -> pb2.SignatoryInformationResponse:
-        """ Get the signature holders for a company.
+        """ Get the signature holders for a company. Signature is the right to sign for the companies in all situations.
+        Extension of prokura which is only for daily operations.
+
+        Norwegian version of :func:`~willowlabs.company_information.client.CompanyInformationClient.get_company_full_signatory_authority`.
 
         Args:
             organisation_number: The organization number for the company being queried.
