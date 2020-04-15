@@ -2,7 +2,7 @@
 Python client library for Willow Labs APIs
 
 ## Installation
-``` Pip install -U willowlabs ```
+``` pip install -U willowlabs ```
 
 ## Example usage
 ```

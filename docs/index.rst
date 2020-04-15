@@ -37,7 +37,17 @@ Client Module
 
 Versions
 ==================
-0.2.0. (current). Basic funcunality.
+**0.3.0** (current)
+
+Relased 15.04.2020.
+
+Added CompanyInformationClient to init for easy import.
+
+**0.2.0.**
+
+Relased 04.04.2020. 
+
+Basic funcunality.
 
 
 Indices and tables
