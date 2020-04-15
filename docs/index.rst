@@ -35,6 +35,9 @@ Client Module
    :show-inheritance:
 
 
+Versions
+==================
+0.2.0. (current). Basic funcunality.
 
 
 Indices and tables
