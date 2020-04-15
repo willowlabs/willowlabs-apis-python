@@ -21,3 +21,6 @@ Python client library for Willow Labs APIs
 ### 0.2.0 
 Relased 04.04.2020.
 First beta version. Basic funcunality.
+
+## License
+[MIT](https://opensource.org/licenses/MIT)
