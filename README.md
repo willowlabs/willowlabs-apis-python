@@ -7,7 +7,7 @@ Python client library for Willow Labs APIs
 ## Example usage
 ```
    import willowlabs as wl
-   client = wl.company_information.client.CompanyInformationClient("client_config.yaml")
+   client = wl.CompanyInformationClient("client_config.yaml")
    company_basic_results = client.get_basic_company_information(organisation_number)
    company_ownership_results = client.get_company_ownership(organisation_number, record_year)
 ```
