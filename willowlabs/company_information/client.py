@@ -245,7 +245,8 @@ class CompanyInformationClient:
             organisation_number: The organization number for the company being queried.
             query_date: The date to get the signature for.
 
-        Returns: The signature holders.
+        Returns:
+            The signature holders.
 
         """
         return self.get_company_signatory_information(organisation_number, pb2.SignatoryAuthorityTypes.SIGNATUR,
