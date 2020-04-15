@@ -189,7 +189,7 @@ class CompanyInformationClient:
             query_date: Information retrieved will be the one valid at this date.
 
         Returns:
-            The list of all prokuras.
+            The list of all the the power of attorney rights.
         """
         return self.get_company_signatory_information(organisation_number,
                                                       pb2.SignatoryAuthorityTypes.POWER_OF_ATTORNEY,
