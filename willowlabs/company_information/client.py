@@ -20,13 +20,16 @@ def _check_jwt(f):
 
 
 class CompanyInformationClient:
-    """
-    Class to access Willow Labs API.
-    :param configuration_path: The path of the configuration file.
-    :param kwargs: Ekstra parameters. - Timeout, service_type, return_dict
+    """Class to access Willow Labs API.
     """
 
     def __init__(self, configuration_path: str, **kwargs: Any):
+        """Initialize the client.
+
+        Args:
+            configuration_path: The path of the coniguration file.
+            **kwargs: Extra arguments.
+        """
         self.configuration_path = configuration_path
         self.configuration = None
         self.service_type = kwargs.get("service_type", "production")
@@ -45,8 +48,7 @@ class CompanyInformationClient:
 
 
     def load_configuration(self):
-        """
-        Loads the config
+        """Loads the configuration into memory.
         """
         self.configuration = tools.load_client_configuration(self.configuration_path)
         self.host = self.configuration["service"][self.service_type]["host"]
@@ -55,6 +57,8 @@ class CompanyInformationClient:
         self.api_key = self.configuration["service"][self.service_type]["api_key"]
 
     def load_credentials(self):
+        """Loads the credentials into memory.
+        """
         if self.configuration is None:
             self.load_configuration()
         configuration = self.configuration["service"][self.service_type]
@@ -66,9 +70,8 @@ class CompanyInformationClient:
             raise FileNotFoundError(f"Unable to find credentials in path {path}.")
 
     def get_json_web_token(self):
-        """
-        Get the token
-        :return:
+        """Loads the web token into memory Uses impersonation of Willowlabs service account by currently signed in service account.
+        This will enable the current service account to behave as if it was logged in as Willow Labs API service account. Billing for billable requests to gcloud will be billed to current service account.
         """
         if self.credentials_info is None:
             self.load_credentials()
@@ -80,14 +83,18 @@ class CompanyInformationClient:
     @_check_jwt
     def get_company_ownership(self, organisation_number: int, record_year: int, depth: int = 25, cutoff: float = 1.0,
                               top: int = 0) -> pb2.OwnershipResponse:
-        """
-        Get owners for a company.
-        :param organisation_number: Organization number for the company the structure is needed for.
-        :param record_year: The ownership year.
-        :param depth: How deep
-        :param cutoff: Minimum percentage of ownership for inclusion in result.
-        :param top: The number of max elements returned (The top N owners).
-        :return: The ownership structure.
+        """Get owners for a company.
+
+        Args:
+            organisation_number: The organization number for the company being queried.
+            record_year: The ownership year.
+            depth: Max depth of ownership structure returned.
+            cutoff: Minimum percentage of ownership for inclusion in result.
+            top: The number of max elements returned (The top N owners).
+
+        Returns:
+            The ownership structure.
+
         """
         with grpc.secure_channel(self.host, grpc.ssl_channel_credentials()) as channel:
             stub = pb2_grpc.CompanyInformationStub(channel)
@@ -99,6 +106,15 @@ class CompanyInformationClient:
 
     @_check_jwt
     def get_company_roles(self, organisation_number: int, query_date: date) -> pb2.RoleResponse:
+        """ Get the roles for a company.
+
+        Args:
+            organisation_number: The organization number for the company being queried.
+            query_date: Information retrieved will be the one valid at this date.
+
+        Returns:
+            The roles belonging to the given organization number.
+        """
         with grpc.secure_channel(self.host, grpc.ssl_channel_credentials()) as channel:
             stub = pb2_grpc.CompanyInformationStub(channel)
             metadata = [("authorization", f"Bearer {self.jwt}"), ("x-api-key", self.api_key)]
@@ -110,6 +126,15 @@ class CompanyInformationClient:
     @_check_jwt
     def get_basic_company_information(self, organisation_number: int,
                                       query_date: Optional[date] = None) -> pb2.BasicCompanyInformationResponse:
+        """Get the basic information for a company. May include address, industrikode (industry code), næringskode (business code).
+
+        Args:
+            organisation_number: The organization number for the company being queried.
+            query_date: Information retrieved will be the one valid at this date.
+
+        Returns:
+            The the basic information of the organization number given.
+        """
         with grpc.secure_channel(self.host, grpc.ssl_channel_credentials()) as channel:
             stub = pb2_grpc.CompanyInformationStub(channel)
             metadata = [("authorization", f"Bearer {self.jwt}"), ("x-api-key", self.api_key)]
@@ -122,6 +147,16 @@ class CompanyInformationClient:
     def get_company_signatory_information(self, organisation_number: int,
                                           authority_type: Union[str, int],
                                           query_date: Optional[date] = None) -> pb2.SignatoryInformationResponse:
+        """Get the signature holders for the company.
+
+        Args:
+            organisation_number: The organization number for the company being queried.
+            authority_type:
+            query_date: Information retrieved will be the one valid at this date.
+
+        Returns:
+            The signature holders of the given organization number.
+        """
         if isinstance(authority_type, str):
             try:
                 authority_type = getattr(pb2.SignatoryAuthorityTypes, authority_type.upper())
@@ -144,11 +179,14 @@ class CompanyInformationClient:
     @_check_jwt
     def get_company_power_of_attorney(self, organisation_number: int,
                                       query_date: Optional[date] = None) -> pb2.SignatoryInformationResponse:
-        """
-        sadasd
-        :param organisation_number: sds
-        :param query_date: sdsa
-        :return: sda
+        """Get the rights of attorney for the company. Same as Prokura.
+
+        Args:
+            organisation_number: The organization number for the company being queried.
+            query_date: Information retrieved will be the one valid at this date.
+
+        Returns:
+            The rights of attorney for the given organization number.
         """
         return self.get_company_signatory_information(organisation_number,
                                                       pb2.SignatoryAuthorityTypes.POWER_OF_ATTORNEY,
@@ -157,6 +195,15 @@ class CompanyInformationClient:
     @_check_jwt
     def get_company_full_signatory_authority(self, organisation_number: int,
                                              query_date: Optional[date] = None) -> pb2.SignatoryInformationResponse:
+        """Get the information about full signature holders.
+
+        Args:
+            organisation_number: The organization number for the company being queried.
+            query_date: Information retrieved will be the one valid at this date.
+
+        Returns:
+            The list of all signature holders for the organization number.
+        """
         return self.get_company_signatory_information(organisation_number,
                                                       pb2.SignatoryAuthorityTypes.FULL_SIGNATORY_AUTHORITY,
                                                       query_date=query_date)
@@ -164,11 +211,30 @@ class CompanyInformationClient:
     @_check_jwt
     def get_company_prokura(self, organisation_number: int,
                             query_date: Optional[date] = None) -> pb2.SignatoryInformationResponse:
+        """Get the prokura rights for the company. Prokura is the signature rights for all daily operations.
+        See: `Lovdata <https://lovdata.no/dokument/NL/lov/1985-06-21-80>`_ or `Wikipedia <https://no.wikipedia.org/wiki/Prokura>`_.
+
+        Args:
+            organisation_number: The organization number for the company being queried.
+            query_date: Information retrieved will be the one valid at this date.
+
+        Returns:
+            The
+        """
         return self.get_company_signatory_information(organisation_number, pb2.SignatoryAuthorityTypes.PROKURA,
                                                       query_date=query_date)
 
     @_check_jwt
     def get_company_signatur(self, organisation_number: int,
                              query_date: Optional[date] = None) -> pb2.SignatoryInformationResponse:
+        """ Get the signature holders for a company.
+
+        Args:
+            organisation_number: The organization number for the company being queried.
+            query_date: The date to get the signature for.
+
+        Returns: The signature holders.
+
+        """
         return self.get_company_signatory_information(organisation_number, pb2.SignatoryAuthorityTypes.SIGNATUR,
                                                       query_date=query_date)

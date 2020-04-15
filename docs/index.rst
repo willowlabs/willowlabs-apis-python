@@ -14,7 +14,7 @@ Client Module
 ==================
 .. automodule:: willowlabs.company_information.client
    :members:
-   :undoc-members:
+   :special-members:
    :show-inheritance:
 
 

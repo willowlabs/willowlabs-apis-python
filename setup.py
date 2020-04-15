@@ -77,8 +77,8 @@ setup(
     packages=find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3.7",
-        "Development Status :: 3 - Open Beta",
-        "Intended Audience :: Data Scientists, Developers",
+        "Development Status :: 4 - Beta",
+        "Intended Audience :: Developers",
         "Operating System :: OS Independent",
         "Topic :: Internet :: WWW/HTTP"
     ]
