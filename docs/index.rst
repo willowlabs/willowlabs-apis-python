@@ -10,13 +10,15 @@ Welcome to Willow Labs Python API's documentation!
 This library conatins APIs to connect to Willow Labs services.
 
 
-Installation:
+Installation
+############
 
 .. code-block:: python
 
    pip install -U willowlabs
 	
-Example usage:
+Example usage
+#############
 
 .. code-block:: python
 
