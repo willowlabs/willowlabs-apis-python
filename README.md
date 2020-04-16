@@ -6,8 +6,8 @@ Python client library for Willow Labs APIs
 
 ## Example usage
 ```
-   import willowlabs as wl
-   client = wl.CompanyInformationClient("client_config.yaml")
+   from willowlabs.company_information.client import CompanyInformationClient
+   client = CompanyInformationClient("client_config.yaml")
    company_basic_results = client.get_basic_company_information(organisation_number)
    company_ownership_results = client.get_company_ownership(organisation_number, record_year)
 ```
@@ -17,10 +17,15 @@ Python client library for Willow Labs APIs
 
 
 ## Versions
-### 0.3.0 (current) 
+### 0.4.0 (current) 
+Relased 16.04.2020.
+
+Change in import structure.
+
+### 0.3.0  
 Relased 15.04.2020.
 
-Added CompanyInformationClient to \_\_init__ for easy import.
+Bugg fixes.
 
 ### 0.2.0 
 Relased 04.04.2020.

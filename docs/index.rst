@@ -14,6 +14,17 @@ Willow labs APIs offers services to get information regarding companies and rela
 * Signature rights and prokura holders for a comapny.
 * Roles connected to the company, for example CEO, board members, accountant.
 
+
+	
++-----------------------------------------+-------------------------------+-----------+
+| Service name                            | Descritpion                   | Language  |
++=========================================+===============================+===========+
+| get_basic_company_information           | Basic information             |  English  |
++-----------------------------------------+-------------------------------+-----------+
+| get_company_full_signatory_authority    | All signature holders         | English   | 
++-----------------------------------------+-------------------------------+-----------+
+
+
 Installation
 ############
 
@@ -26,8 +37,8 @@ Example usage
 
 .. code-block:: python
 
-   import willowlabs as wl
-   client = wl.CompanyInformationClient("client_config.yaml")
+   from willowlabs.company_information.client import CompanyInformationClient
+   client = CompanyInformationClient("client_config.yaml")
    company_basic_results = client.get_basic_company_information(organisation_number)
    company_ownership_results = client.get_company_ownership(organisation_number, record_year)
 	
@@ -43,19 +54,23 @@ Client Module
 
 Versions
 ==================
-0.3.0 (current)
-###############
+0.4.0 (current)
+############### 
+Relased 16.04.2020.
 
+Change in import structure.
+
+0.3.0
+#####  
 Relased 15.04.2020.
 
-Added CompanyInformationClient to init for easy import.
+Bugg fixes.
 
-0.2.0.
-######
+0.2.0
+##### 
+Relased 04.04.2020.
 
-Relased 04.04.2020. 
-
-Basic funcunality.
+First beta version: Basic funcunality.
 
 
 Indices and tables
