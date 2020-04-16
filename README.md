@@ -1,5 +1,18 @@
 # Willow Labs Python API
-Python client library for Willow Labs APIs
+Willow labs APIs offers services to get information regarding companies and related entities. The main companents are:
+
+* Information about the owners of a comapny. This service provides owners at all levels, meaning it recursively goes trough the ownership structure until a private owner is established.
+* Basic company information as address, industry, number of employees and more.
+* Signature rights and prokura holders for a comapny.
+* Roles connected to the company, for example CEO, board members, accountant.
+
+
+| Service name                             | Descritpion                  | Language  |
+| ---------------------------------------- |:----------------------------| :---------|
+| get_basic_company_information            | Basic information            | English   |
+| get_company_full_signatory_authority     | All signature holders        | English   |
+|                                          |                              | Norwegian |
+
 
 ## Installation
 ``` pip install -U willowlabs ```
@@ -30,7 +43,7 @@ Bugg fixes.
 ### 0.2.0 
 Relased 04.04.2020.
 
-First beta version: Basic funcunality.
+First beta version: Basic functionality.
 
 ## License
 [MIT](https://opensource.org/licenses/MIT)

@@ -70,7 +70,7 @@ Bugg fixes.
 ##### 
 Relased 04.04.2020.
 
-First beta version: Basic funcunality.
+First beta version: Basic functionality.
 
 
 Indices and tables
