@@ -7,8 +7,12 @@ Welcome to Willow Labs Python API's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-This library conatins APIs to connect to Willow Labs services.
+Willow labs APIs offers services to get information regarding companies and related entities. The main companents are:
 
+* Information about the owners of a comapny. This service provides owners at all levels, meaning it recursively goes trough the ownership structure until a private owner is established.
+* Basic company information as address, industry, number of employees and more.
+* Signature rights and prokura holders for a comapny.
+* Roles connected to the company, for example CEO, board members, accountant.
 
 Installation
 ############
@@ -39,13 +43,15 @@ Client Module
 
 Versions
 ==================
-**0.3.0** (current)
+0.3.0 (current)
+###############
 
 Relased 15.04.2020.
 
 Added CompanyInformationClient to init for easy import.
 
-**0.2.0.**
+0.2.0.
+######
 
 Relased 04.04.2020. 
 
