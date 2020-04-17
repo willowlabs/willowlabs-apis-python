@@ -147,11 +147,11 @@ class CompanyInformationClient:
     def get_company_signatory_information(self, organisation_number: int,
                                           authority_type: Union[str, int],
                                           query_date: Optional[date] = None) -> pb2.SignatoryInformationResponse:
-        """Get the signature holders for the company.
+        """Get the authority holders for the company for a given authority type.
 
         Args:
             organisation_number: The organization number for the company being queried.
-            authority_type:
+            authority_type: The authority type being requested.
             query_date: Information retrieved will be the one valid at this date.
 
         Returns:

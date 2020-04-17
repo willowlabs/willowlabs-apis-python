@@ -7,11 +7,19 @@ Willow labs APIs offers services to get information regarding companies and rela
 * Roles connected to the company, for example CEO, board members, accountant.
 
 
-| Service name                             | Descritpion                  | Language  |
-| ---------------------------------------- |:----------------------------| :---------|
-| get_basic_company_information            | Basic information            | English   |
-| get_company_full_signatory_authority     | All signature holders        | English   |
-|                                          |                              | Norwegian |
+| Service name                             | Descritpion                          | Language  |
+| ---------------------------------------- |:-------------------------------------| :--------- |
+| get_basic_company_information            | Basic information                    | English   |
+| get_company_ownership                    | Get the full ownership structure     | English   |
+| get_company_power_of_attorney            | Get everyone with power of attorny.  | English   |
+| get_company_prokura                      | Get everyone with prokura rights.    | Norwegian |
+|                                          | Same as get_company_power_of_attorney|           |
+| get_company_full_signatory_authority     | All signature holders                | English   |
+| get_company_signatur                     | Get all signature holders. Same as   | Norwegian |
+|                                          | get_company_full_signatory_authority |           |
+| get_company_signatory_information        | Get the authority holder for a       | English   |
+|                                          | given authorithy.                    |           |
+| get_company_roles                        | Get all roles connect to a company.  | English   |
 
 
 ## Installation
