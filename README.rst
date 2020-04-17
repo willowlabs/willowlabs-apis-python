@@ -1,4 +1,5 @@
-# Willow Labs Python API
+Willow Labs Python API
+========================
 Willow labs APIs offers services to get information regarding companies and related entities. The main companents are:
 
 |build-status| |docs|
@@ -8,6 +9,8 @@ Willow labs APIs offers services to get information regarding companies and rela
 * Signature rights and prokura holders for a comapny.
 * Roles connected to the company, for example CEO, board members, accountant.
 
+Function summary
+----------------
 
 +-----------------------------------------+-------------------------------------------------------+-----------+-----------------------------------+
 | Service name                            | Descritpion                                           | Language  | English version                   |
@@ -32,10 +35,12 @@ Willow labs APIs offers services to get information regarding companies and rela
 \* The function is a Norwegian version of an english function - see english version column for information.
 
 
-## Installation
+Installation
+----------------
 ``` pip install -U willowlabs ```
 
-## Example usage
+Example usage
+-------------
 ```
    from willowlabs.company_information.client import CompanyInformationClient
    client = CompanyInformationClient("client_config.yaml")
@@ -43,22 +48,27 @@ Willow labs APIs offers services to get information regarding companies and rela
    company_ownership_results = client.get_company_ownership(organisation_number, record_year)
 ```
 
-## Documentation
+Documentation
+================
 [Read the docs](https://willow-labs-python-api.readthedocs.io/en/doc_release/)
 
 
-## Versions
-### 0.4.0 (current) 
+Versions
+==========
+0.4.0 (current)
+---------------
 Relased 16.04.2020.
 
 Change in import structure.
 
-### 0.3.0  
+0.3.0
+-----
 Relased 15.04.2020.
 
 Bugg fixes.
 
-### 0.2.0 
+0.2.0
+-----
 Relased 04.04.2020.
 
 First beta version: Basic functionality.
