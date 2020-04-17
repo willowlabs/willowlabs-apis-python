@@ -92,9 +92,9 @@ First beta version: Basic functionality.
     :target: https://crate.io/packages/willowlabs/
     :alt: Number of PyPI downloads
 
-.. |python version| image:: https://pypi.python.org/pypi/yt2mp3/
-    :target: https://crate.io/packages/willowlabs/
-    :alt: Number of PyPI downloads
+.. |python version| image:: https://img.shields.io/pypi/pyversions/yt2mp3.svg
+    :target: https://pypi.python.org/pypi/willowlabs/
+    :alt: Python 3.7
 
 
 
