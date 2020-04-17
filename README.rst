@@ -61,19 +61,19 @@ Documentation
 
 Versions
 ==========
-0.4.0 (current)
+[0.4.0] (current)
 ---------------
 Relased 16.04.2020.
 
 Change in import structure.
 
-0.3.0
+[0.3.0]
 -----
 Relased 15.04.2020.
 
 Bugg fixes.
 
-0.2.0
+[0.2.0]
 -----
 Relased 04.04.2020.
 
