@@ -61,25 +61,22 @@ Documentation
 
 Versions
 ==========
-[0.4.0] (current)
----------------
-Relased 16.04.2020.
+[0.4.0] (current) - 16.04.2020
+------------------------------
 
-Add
-^^^
+Added
+^^^^^
 * Change in import structure.
 
-[0.3.0]
------
-Relased 15.04.2020.
+[0.3.0] - 15.04.2020
+--------------------
 
 Bugg fix
 ^^^^^^^^
 * Removed __init__ import
 
-[0.2.0]
------
-Relased 04.04.2020.
+[0.2.0] - 04.04.2020
+--------------------
 
 First beta version: Basic functionality.
 
