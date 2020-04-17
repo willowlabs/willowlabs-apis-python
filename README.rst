@@ -1,4 +1,4 @@
-.. image:: https://www.tensorflow.org/images/tf_logo_social.png
+.. image:: https://nostra-001.firebaseapp.com/assets/logo.svg
     :width: 200px
     :align: center
     :height: 100px
