@@ -1,6 +1,6 @@
 Willow Labs Python API
 ========================
-|docs| |pypi version| |downloads|
+|docs| |pypi version| |downloads| |python version|
 
 Willow labs APIs offers services to get information regarding companies and related entities. The main companents are:
 
@@ -91,6 +91,12 @@ First beta version: Basic functionality.
 .. |downloads| image:: https://pypip.in/d/willowlabs/badge.png
     :target: https://crate.io/packages/willowlabs/
     :alt: Number of PyPI downloads
+
+.. |python version| image:: https://img.shields.io/pypi/pyversions/yt2mp3.svg)](https://pypi.python.org/pypi/yt2mp3/
+    :target: https://crate.io/packages/willowlabs/
+    :alt: Number of PyPI downloads
+
+
 
 License
 -------
