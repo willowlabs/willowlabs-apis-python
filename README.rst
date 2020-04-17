@@ -1,7 +1,7 @@
 .. image:: https://cdn.sanity.io/images/jb69otiu/production/8e8af3424c5f040eec11ec1054c09441f57bf166-1348x999.png
-    :width: 200px
+    :width: 2000px
     :align: center
-    :height: 100px
+    :height: 1000px
     :alt: alternate text
 
 Willow Labs Python API
