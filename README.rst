@@ -55,8 +55,9 @@ Example usage
 
 Documentation
 ================
-[Read the docs](https://willow-labs-python-api.readthedocs.io/en/doc_release/)
+`Read the Docs`_
 
+.. _Read the docs: https://willow-labs-python-api.readthedocs.io/en/doc_release/
 
 Versions
 ==========
