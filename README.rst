@@ -67,6 +67,12 @@ Documentation
 
 Versions
 ==========
+Using `semantic`_ versioning 2.0.0.
+
+.. _semantic: https://semver.org/
+
+
+
 [0.4.0] - 16.04.2020
 ------------------------------
 
