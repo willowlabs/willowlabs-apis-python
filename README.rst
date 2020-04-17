@@ -79,10 +79,10 @@ Relased 04.04.2020.
 
 First beta version: Basic functionality.
 
-.. |docs| image:: https://readthedocs.org/projects/docs/badge/?version=latest
+.. |docs| image:: https://readthedocs.org/projects//willow-labs-python-api/badge/?version=doc_release&style=plastic
     :alt: Documentation Status
     :scale: 100%
-    :target: https://willow-labs-python-api.reasdthedocs.io/en/doc_release/#?badge=doc_release
+    :target: https://willow-labs-python-api.readthedocs.io/en/doc_release/#?badge=doc_release
 
 License
 -------
