@@ -87,6 +87,6 @@ First beta version: Basic functionality.
 License
 -------
 
-`MIT`_ © 2010-2019 Read the Docs, Inc & contributors
+`MIT`_ © 2010-2020 Willow Labs
 
 .. _MIT: LICENSE
