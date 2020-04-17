@@ -67,9 +67,9 @@ Documentation
 
 Versions
 ==========
-Using `semantic`_ versioning 2.0.0.
+Using `Semantic Versioning 2.0.0`_.
 
-.. _semantic: https://semver.org/
+.. _Semantic Versioning 2.0.0: https://semver.org/
 
 
 
