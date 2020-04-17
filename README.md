@@ -1,6 +1,8 @@
 # Willow Labs Python API
 Willow labs APIs offers services to get information regarding companies and related entities. The main companents are:
 
+|docs|
+
 * Information about the owners of a comapny. This service provides owners at all levels, meaning it recursively goes trough the ownership structure until a private owner is established.
 * Basic company information as address, industry, number of employees and more.
 * Signature rights and prokura holders for a comapny.
@@ -53,5 +55,16 @@ Relased 04.04.2020.
 
 First beta version: Basic functionality.
 
-## License
-[MIT](https://opensource.org/licenses/MIT)
+
+
+.. |docs| image:: https://readthedocs.org/projects/docs/badge/?version=latest
+    :alt: Documentation Status
+    :scale: 100%
+    :target: https://willow-labs-python-api.readthedocs.io/en/doc_release/#?badge=doc_release
+
+License
+-------
+
+`MIT`_ © 2010-2019 Read the Docs, Inc & contributors
+
+.. _MIT: LICENSE

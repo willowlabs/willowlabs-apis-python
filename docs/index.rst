@@ -19,19 +19,19 @@ Willow labs APIs offers services to get information regarding companies and rela
 +-----------------------------------------+-------------------------------------------------------+-----------+-----------------------------------+
 | Service name                            | Descritpion                                           | Language  | English version                   |
 +=========================================+=======================================================+===========+===================================+
-| get_basic_company_information           | Basic information                                     |  English  |                                   |
+| get_basic_company_information           | Basic information.                                    |  English  |                                   |
 +-----------------------------------------+-------------------------------------------------------+-----------+-----------------------------------+
-| get_company_ownership                   | Get the full ownership structure                      | English   |                                   |
+| get_company_ownership                   | Get the full ownership structure.                     | English   |                                   |
 +-----------------------------------------+-------------------------------------------------------+-----------+-----------------------------------+
 | get_company_power_of_attorney           | Get everyone with power of attorney.                  | English   |                                   |
 +-----------------------------------------+-------------------------------------------------------+-----------+-----------------------------------+
 | \*get_company_prokura                   | Get everyone with prokura rights (power of attorney). | Norwegian | get_company_power_of_attorney     | 
 +-----------------------------------------+-------------------------------------------------------+-----------+-----------------------------------+
-| get_company_full_signatory_authority    | All signature holders                                 | English   |                                   |
+| get_company_full_signatory_authority    | All signature holders.                                | English   |                                   |
 +-----------------------------------------+-------------------------------------------------------+-----------+-----------------------------------+
 | \*get_company_signatur                  | Get all signatur (signature) holders.                 | Norwegian | get_company_signatory_information | 
 +-----------------------------------------+-------------------------------------------------------+-----------+-----------------------------------+
-| get_company_signatory_information       | Get the authority holder for a                        | English   |                                   |
+| get_company_signatory_information       | Get the authority holder.                             | English   |                                   |
 +-----------------------------------------+-------------------------------------------------------+-----------+-----------------------------------+
 | get_company_roles                       | Get all roles connect to a company.                   | English   |                                   |
 +-----------------------------------------+-------------------------------------------------------+-----------+-----------------------------------+
