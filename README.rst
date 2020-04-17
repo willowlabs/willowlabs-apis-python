@@ -37,16 +37,21 @@ Function summary
 
 Installation
 ----------------
-``` pip install -U willowlabs ```
+
+.. code-block:: python
+
+   pip install -U willowlabs
 
 Example usage
 -------------
-```
+
+.. code-block:: python
+
    from willowlabs.company_information.client import CompanyInformationClient
    client = CompanyInformationClient("client_config.yaml")
    company_basic_results = client.get_basic_company_information(organisation_number)
    company_ownership_results = client.get_company_ownership(organisation_number, record_year)
-```
+
 
 Documentation
 ================
