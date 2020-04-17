@@ -1,3 +1,9 @@
+.. image:: https://www.tensorflow.org/images/tf_logo_social.png
+    :width: 200px
+    :align: center
+    :height: 100px
+    :alt: alternate text
+
 Willow Labs Python API
 ========================
 |docs| |pypi version| |downloads| |python version|
