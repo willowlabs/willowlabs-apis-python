@@ -59,7 +59,7 @@ install_requires = [
     "PyYAML>=5.3"
 ]
 
-with open("README.md", "r") as fh:
+with open("README.rst", "r") as fh:
     long_description = fh.read()
 
 setup(
