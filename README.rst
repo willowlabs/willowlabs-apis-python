@@ -84,7 +84,7 @@ First beta version: Basic functionality.
     :scale: 100%
     :target: https://willow-labs-python-api.readthedocs.io/en/doc_release/#?badge=doc_release
 
-.. |license| image:: https://img.shields.io/github/license/mashape/apistatus.svg
+.. |license| image:: https://img.shields.io/github/license/mashape/apistatus.svg&style=plastic
 
 License
 -------
