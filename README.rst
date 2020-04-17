@@ -65,13 +65,17 @@ Versions
 ---------------
 Relased 16.04.2020.
 
-Change in import structure.
+Add
+^^^
+* Change in import structure.
 
 [0.3.0]
 -----
 Relased 15.04.2020.
 
-Bugg fixes.
+Bugg fix
+^^^^^^^^
+* Removed __init__ import
 
 [0.2.0]
 -----
