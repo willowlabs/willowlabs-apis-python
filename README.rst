@@ -105,8 +105,8 @@ First beta version: Basic functionality.
     :target: https://pypi.python.org/pypi/willowlabs/
     :alt: Number of PyPI downloads
 
-.. |python version| image:: https://img.shields.io/pypi/pyversions/yt2mp3.svg
-    :target: https://pypi.python.org/pypi/willowlabs/
+.. |python version| image:: https://img.shields.io/badge/python-3.7-blue.svg
+    :target: https://www.python.org/downloads/release/python-370
     :alt: Python 3.7
 
 
