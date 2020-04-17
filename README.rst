@@ -1,6 +1,6 @@
 Willow Labs Python API
 ========================
-|docs|
+|docs| |license|
 
 Willow labs APIs offers services to get information regarding companies and related entities. The main companents are:
 
@@ -83,6 +83,8 @@ First beta version: Basic functionality.
     :alt: Documentation Status
     :scale: 100%
     :target: https://willow-labs-python-api.readthedocs.io/en/doc_release/#?badge=doc_release
+
+.. |license| image:: /apm/l/:packageName
 
 License
 -------
