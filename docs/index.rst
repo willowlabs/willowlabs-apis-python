@@ -43,14 +43,14 @@ Willow labs APIs offers services to get information regarding companies and rela
 \* The function is a Norwegian version of an english function - see english version column for information.
 
 Installation
-############
+-------------
 
 .. code-block:: python
 
    pip install -U willowlabs
 	
 Example usage
-#############
+-------------
 
 .. code-block:: python
 
@@ -70,22 +70,40 @@ Client Module
 
 
 Versions
-==================
-0.4.0 (current)
-############### 
-Relased 16.04.2020.
+==========
+Using `Semantic Versioning 2.0.0`_.
 
-Change in import structure.
+.. _Semantic Versioning 2.0.0: https://semver.org/
 
-0.3.0
-#####  
-Relased 15.04.2020.
 
-Bugg fixes.
+[0.5.0] - 16.04.2020
+------------------------------
 
-0.2.0
-##### 
-Relased 04.04.2020.
+Added
+^^^^^
+* Readme file documentation.
+
+
+[0.4.0] - 16.04.2020
+------------------------------
+
+Added
+^^^^^
+* Change in import structure.
+
+[0.3.0] - 15.04.2020
+--------------------
+
+Added
+^^^^^
+* New function to get roller
+
+Bugg fix
+^^^^^^^^
+* Removed __init__ import
+
+[0.2.0] - 04.04.2020
+--------------------
 
 First beta version: Basic functionality.
 

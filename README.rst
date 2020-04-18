@@ -72,6 +72,13 @@ Using `Semantic Versioning 2.0.0`_.
 .. _Semantic Versioning 2.0.0: https://semver.org/
 
 
+[0.5.0] - 16.04.2020
+------------------------------
+
+Added
+^^^^^
+* Readme file documentation.
+
 
 [0.4.0] - 16.04.2020
 ------------------------------
@@ -82,6 +89,10 @@ Added
 
 [0.3.0] - 15.04.2020
 --------------------
+
+Added
+^^^^^
+* New function to get roller
 
 Bugg fix
 ^^^^^^^^
