@@ -1,8 +1,8 @@
 .. image:: https://i.imgur.com/J2CGGYd.jpg
-    :width: 12000px
+    :width: 1200px
     :align: center
     :height: 600px
-    :alt: alternate text
+    :alt: Willow Labs logo
 
 Willow Labs Python API
 ========================
