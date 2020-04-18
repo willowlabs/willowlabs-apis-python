@@ -1,4 +1,4 @@
-.. image:: https://photos.app.goo.gl/juzkcQ5KAvw7xtaY6
+.. image:: https://imgur.com/a/sY8ussy
     :width: 600px
     :align: left
     :height: 400px
