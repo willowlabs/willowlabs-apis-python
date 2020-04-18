@@ -1,4 +1,4 @@
-.. image:: https://imgur.com/a/sY8ussy
+.. image:: https://i.imgur.com/J2CGGYd.jpg
     :width: 600px
     :align: left
     :height: 400px
