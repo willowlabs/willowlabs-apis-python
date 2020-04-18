@@ -1,8 +1,9 @@
 .. image:: https://i.imgur.com/J2CGGYd.jpg
-    :width: 1200px
-    :align: center
-    :height: 600px
-    :alt: Willow Labs logo
+   :target: https://willowlabs.ai
+   :width: 1200px
+   :align: center
+   :height: 600px
+   :alt: Willow Labs logo
 
 Willow Labs Python API
 ========================
@@ -10,16 +11,16 @@ Willow Labs Python API
 
 Willow labs APIs offers services to get information regarding companies and related entities. The main companents are:
 
-* Information about the owners of a comapny. This service provides owners at all levels, meaning it recursively goes trough the ownership structure until a private owner is established.
+* Information about the owners of a company. This service provides owners at all levels, meaning it recursively goes trough the ownership structure until a private owner is established.
 * Basic company information as address, industry, number of employees and more.
-* Signature rights and prokura holders for a comapny.
+* Signature rights and prokura holders for a company.
 * Roles connected to the company, for example CEO, board members, accountant.
 
 Function summary
 ----------------
 
 +-----------------------------------------+-------------------------------------------------------+-----------+-----------------------------------+
-| Service name                            | Descritpion                                           | Language  | English version                   |
+| Service name                            | Description                                           | Language  | English version                   |
 +=========================================+=======================================================+===========+===================================+
 | get_basic_company_information           | Basic information.                                    |  English  |                                   |
 +-----------------------------------------+-------------------------------------------------------+-----------+-----------------------------------+
