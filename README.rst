@@ -1,7 +1,7 @@
 .. image:: https://i.imgur.com/J2CGGYd.jpg
     :width: 12000px
-    :align: left
-    :height: 400px
+    :align: center
+    :height: 600px
     :alt: alternate text
 
 Willow Labs Python API
