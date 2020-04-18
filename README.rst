@@ -1,4 +1,4 @@
-.. image:: https://cdn.vox-cdn.com/thumbor/sQz6rDwSUuGeNzKMhzoVTUSS8qc=/1400x1400/filters:format(jpeg)/cdn.vox-cdn.com/uploads/chorus_asset/file/16206479/willow_warwick_davies_5.jpg
+.. image:: https://photos.app.goo.gl/juzkcQ5KAvw7xtaY6
     :width: 600px
     :align: left
     :height: 400px
