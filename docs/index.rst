@@ -1,6 +1,10 @@
+.. image:: https://i.imgur.com/J2CGGYd.jpg
+    :width: 1200px
+    :align: center
+    :height: 600px
+    :alt: Willow Labs logo
 
-
-Welcome to Willow Labs Python API's documentation!
+Willow Labs Python API's documentation
 ==================================================
 
 .. toctree::
