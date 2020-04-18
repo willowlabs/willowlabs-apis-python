@@ -71,6 +71,12 @@ Using `Semantic Versioning 2.0.0`_.
 
 .. _Semantic Versioning 2.0.0: https://semver.org/
 
+[0.5.1] - 16.04.2020
+------------------------------
+
+Bugg fix
+^^^^^^^^
+* Readme file rendering error
 
 [0.5.0] - 16.04.2020
 ------------------------------
