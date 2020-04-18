@@ -1,8 +1,8 @@
-.. image:: https://cdn.vox-cdn.com/thumbor/sQz6rDwSUuGeNzKMhzoVTUSS8qc=/1400x1400/filters:format(jpeg)/cdn.vox-cdn.com/uploads/chorus_asset/file/16206479/willow_warwick_davies_5.jpg
-    :width: 600px
-    :align: left
-    :height: 400px
-    :alt: alternate text
+.. image:: https://i.imgur.com/J2CGGYd.jpg
+    :width: 1200px
+    :align: center
+    :height: 600px
+    :alt: Willow Labs logo
 
 Willow Labs Python API
 ========================
