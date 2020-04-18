@@ -1,5 +1,5 @@
 .. image:: https://i.imgur.com/J2CGGYd.jpg
-    :width: 600px
+    :width: 12000px
     :align: left
     :height: 400px
     :alt: alternate text
