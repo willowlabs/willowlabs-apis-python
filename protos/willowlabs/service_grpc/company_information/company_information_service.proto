@@ -1,6 +1,7 @@
 syntax = "proto3";
 
 package willowlabs.services.company_information;
+import "google/protobuf/timestamp.proto";
 
 service CompanyInformation {
   rpc get_company_ownership(OwnershipRequest) returns (OwnershipResponse) {}
@@ -75,24 +76,13 @@ message OwnershipResponse {
   repeated CompanyShares company_shares = 2;
   bool bad_request = 3;
   bool server_error = 4;
-  Timestamp response_timestamp = 5;
+  google.protobuf.Timestamp response_timestamp = 5;
 }
 
 message Date {
   int32 year = 1;
   int32 month = 2;
   int32 day = 3;
-}
-
-message Timestamp {
-  int32 year = 1;
-  int32 month = 2;
-  int32 day = 3;
-  int32 hour = 4;
-  int32 minute = 5;
-  int32 second = 6;
-  int32 microsecond = 7;
-  int32 timezone = 8;
 }
 
 message RoleRequest {
@@ -145,7 +135,7 @@ message RoleResponse {
   bool complete_board_search = 4;
   bool bad_request = 5;
   bool server_error = 6;
-  Timestamp response_timestamp = 7;
+  google.protobuf.Timestamp response_timestamp = 7;
 }
 
 message SectorCode {
@@ -236,7 +226,7 @@ message BasicCompanyInformationResponse {
   BasicCompanyInformation basic_company_information = 2;
   bool bad_request = 3;
   bool server_error = 4;
-  Timestamp response_timestamp = 5;
+   google.protobuf.Timestamp response_timestamp = 5;
 }
 
 enum SignatoryAuthorityTypes {
@@ -273,5 +263,5 @@ message SignatoryInformationResponse {
   bool fallback_results = 5;                // Results came from web scraping
   bool bad_request = 6;
   bool server_error = 7;
-  Timestamp response_timestamp = 8;
+  google.protobuf.Timestamp response_timestamp = 8;
 }
