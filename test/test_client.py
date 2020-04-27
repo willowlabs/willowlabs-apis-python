@@ -1,9 +1,16 @@
+# py.test  -v --junitxml="result.xml"
+
 import pytest
 
 from willowlabs.company_information.client import CompanyInformationClient
 
-def test_get_basic_company_information_failure_1():
+@pytest.fixture
+def client():
     client = CompanyInformationClient("C:\\Users\\Sven\\projects\\client_config.yaml")
+    return client
+
+def test_get_basic_company_information_failure_1(client):
+
     organisation_number = 1
     company_basic_results = client.get_basic_company_information(organisation_number)
     assert company_basic_results.bad_request == True
