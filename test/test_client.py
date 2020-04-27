@@ -20,6 +20,9 @@ def test_get_company_ownership():
     organisation_number = 1
     record_year = 2018
     company_ownership_results = client.get_company_ownership(organisation_number, record_year)
+    assert company_ownership_results.bad_request == True
+    organisation_number = 923710809
+    company_ownership_results = client.get_company_ownership(organisation_number, record_year)
     print(company_ownership_results)
     print(type(company_ownership_results))
     assert company_ownership_results.bad_request == True
@@ -27,4 +30,4 @@ def test_get_company_ownership():
 
 
 
-test_get_basic_company_information()
+test_get_company_ownership()

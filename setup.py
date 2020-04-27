@@ -122,7 +122,7 @@ if __name__ == "__main__":
         classifiers=[
             "Programming Language :: Python :: 3.7",
             "Development Status :: 4 - Beta",
-            "Intended Audience :: Data Scientists, Developers",
+            "Intended Audience :: Developers",
             "Operating System :: OS Independent",
             "Topic :: Internet :: WWW/HTTP"
         ]
