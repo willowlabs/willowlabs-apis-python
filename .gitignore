@@ -138,5 +138,3 @@ dmypy.json
 *_pb2.py
 *_pb2_grpc.py
 
-
-client_config.yaml

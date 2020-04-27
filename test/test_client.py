@@ -3,7 +3,7 @@ import pytest
 from willowlabs.company_information.client import CompanyInformationClient
 
 def test_get_basic_company_information():
-    client = CompanyInformationClient("client_config.yaml")
+    client = CompanyInformationClient("C:\\Users\\Sven\\projects\\client_config.yaml")
     organisation_number = 1
     company_basic_results = client.get_basic_company_information(organisation_number)
 
@@ -16,7 +16,7 @@ def test_get_basic_company_information():
 
 
 def test_get_company_ownership():
-    client = CompanyInformationClient("client_config.yaml")
+    client = CompanyInformationClient("C:\\Users\\Sven\\projects\\client_config.yaml")
     organisation_number = 1
     record_year = 2018
     company_ownership_results = client.get_company_ownership(organisation_number, record_year)
