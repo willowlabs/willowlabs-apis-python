@@ -72,6 +72,13 @@ Using `Semantic Versioning 2.0.0`_.
 
 .. _Semantic Versioning 2.0.0: https://semver.org/
 
+[0.5.4] - 16.04.2020
+------------------------------
+
+Bugg fix
+^^^^^^^^
+* gcloud not authorized
+
 [0.5.1] - 16.04.2020
 ------------------------------
 
