@@ -1,3 +1,5 @@
 pip install -r requirements.txt
 pip install -r requirements-dev.txt
-pre-commit install
+# Pre commit hooks to git
+#pre-commit install
+pre-commit install -t pre-push
