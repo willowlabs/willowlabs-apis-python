@@ -27,7 +27,6 @@ repos:
     hooks:
     -   id: tests
         name: run tests
-        entry: py.test -v
+        entry: pytest -v
         language: system
-        types: [python]
         stages: [push]
