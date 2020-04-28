@@ -23,10 +23,11 @@ repos:
 #    rev: ''  # Use the sha / tag you want to point at
 #    hooks:
 #    -   id: mypy
--   repo: local
-    hooks:
-    -   id: tests
-        name: run tests
-        entry: pytest -v
-        language: system
-        stages: [push]
+#-   repo: local
+#    hooks:
+#    -   id: tests
+#        name: run tests
+#        entry: pytest -v
+#        language: system
+#        types: [python]
+#        stages: [push]
