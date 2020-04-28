@@ -14,6 +14,9 @@ Using `pre-commit`_ to add git commit and push hooks. Available hooks:
 Installation
 -------------
 
+* add path to config file for service account to config-dev.yaml
+* inatall needed packages using pip and install pre-commit to .git folder by running:
+
 .. code-block:: python
 
     pip install -r requirements.txt
