@@ -1,6 +1,7 @@
 # py.tests  -v --junitxml="result.xml"
 
 import pytest
+import yaml
 
 from willowlabs.company_information.client import CompanyInformationClient
 
@@ -9,9 +10,22 @@ from willowlabs.company_information.client import CompanyInformationClient
 # from pytest_mock import mocker
 
 
+def tmp_client():
+    with open(r"config-dev.yaml") as file:
+        # The FullLoader parameter handles the conversion from YAML
+        # scalar values to Python the dictionary format
+        config = yaml.load(file, Loader=yaml.FullLoader)
+    client = CompanyInformationClient(config["client_config_path"])
+    return client
+
+
 @pytest.fixture
 def client():
-    client = CompanyInformationClient("C:\\Users\\Sven\\projects\\client_config.yaml")
+    with open(r"config-dev.yaml") as file:
+        # The FullLoader parameter handles the conversion from YAML
+        # scalar values to Python the dictionary format
+        config = yaml.load(file, Loader=yaml.FullLoader)
+    client = CompanyInformationClient(config["client_config_path"])
     return client
 
 
@@ -21,8 +35,7 @@ def test_get_basic_company_information_failure_1(client):
     assert company_basic_results.bad_request
 
 
-def test_get_basic_company_information_beaufort_1():
-    client = CompanyInformationClient("C:\\Users\\Sven\\projects\\client_config.yaml")
+def test_get_basic_company_information_beaufort_1(client):
     organisation_number = 923710809
     company_basic_results = client.get_basic_company_information(organisation_number)
     print(company_basic_results)
@@ -33,8 +46,7 @@ def test_get_basic_company_information_beaufort_1():
     print(company_basic_results.basic_company_information.company_name)
 
 
-def test_get_company_ownership_beaufort_failure_1():
-    client = CompanyInformationClient("C:\\Users\\Sven\\projects\\client_config.yaml")
+def test_get_company_ownership_beaufort_failure_1(client):
     organisation_number = 1
     record_year = 2018
     company_ownership_results = client.get_company_ownership(
@@ -43,8 +55,7 @@ def test_get_company_ownership_beaufort_failure_1():
     assert company_ownership_results.bad_request
 
 
-def test_get_company_ownership_beaufort_success():
-    client = CompanyInformationClient("C:\\Users\\Sven\\projects\\client_config.yaml")
+def test_get_company_ownership_beaufort_success(client):
     record_year = 2018
     organisation_number = 923710809
     company_ownership_results = client.get_company_ownership(
@@ -53,8 +64,7 @@ def test_get_company_ownership_beaufort_success():
     assert not company_ownership_results.bad_request
 
 
-def test_get_company_ownership_beaufort_struture_ok_1():
-    client = CompanyInformationClient("C:\\Users\\Sven\\projects\\client_config.yaml")
+def test_get_company_ownership_beaufort_struture_ok_1(client):
     record_year = 2018
     organisation_number = 913174054
     cutoff = 1
@@ -68,8 +78,7 @@ def test_get_company_ownership_beaufort_struture_ok_1():
     assert len(company_ownership_results.company_shares[0].individual_owners) == 2
 
 
-def test_get_company_power_of_attorney_ok_1():
-    client = CompanyInformationClient("C:\\Users\\Sven\\projects\\client_config.yaml")
+def test_get_company_power_of_attorney_ok_1(client):
     # record_year = 2018
     organisation_number = 913174054
     company_poa_results = client.get_company_power_of_attorney(organisation_number)
@@ -80,4 +89,4 @@ def test_get_company_power_of_attorney_ok_1():
     )
 
 
-test_get_company_power_of_attorney_ok_1()
+test_get_company_power_of_attorney_ok_1(tmp_client())
