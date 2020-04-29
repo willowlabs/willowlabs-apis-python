@@ -26,4 +26,15 @@ Installation
     pre-commit install -t pre-push
 
 
+
+Continuous integration and testing
+-----------------------------------
+Run tests with
+
+.. code-block:: python
+
+    py.test
+
+
+
 .. _pre-commit: https://pre-commit.com/
