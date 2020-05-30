@@ -141,3 +141,5 @@ dmypy.json
 # pytest
 restult.xml
 
+# batch test
+testing_out.csv
