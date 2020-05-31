@@ -60,6 +60,21 @@ Example usage
    company_ownership_results = client.get_company_ownership(organisation_number, record_year)
 
 
+User self testing suite
+-----------------------
+org_list is a user supplied list of organisation number, run without parameter
+org_list to use build in list of organisations.
+
+
+.. code-block:: python
+
+    from willowlabs import test_report as tr
+    org_list = [1,...,1000]
+    tr.run_report(org_list=org_list)
+
+Modules
+-------------
+
 Client Module
 ==================
 

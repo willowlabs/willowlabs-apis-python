@@ -74,17 +74,16 @@ org_list = [
 ]
 
 
-client = CompanyInformationClient("C:\\Users\\Sven\\projects\\client_config.yaml")
+def run_report(org_list=org_list):
+    client = CompanyInformationClient("C:\\Users\\Sven\\projects\\client_config.yaml")
 
+    error_list = []
 
-error_list = []
+    for org in org_list:
+        result = client.get_company_roles(org, query_date=dt.datetime.today())
+        print(result)
+        error_list.append([org, result.server_error])
 
-for org in org_list:
-    result = client.get_company_roles(org, query_date=dt.datetime.today())
-    print(result)
-    error_list.append([org, result.server_error])
-
-
-with open("../testing_out.csv", "w", newline="") as f:
-    writer = csv.writer(f)
-    writer.writerows(error_list)
+    with open("../testing_out.csv", "w", newline="") as f:
+        writer = csv.writer(f)
+        writer.writerows(error_list)
