@@ -2,6 +2,7 @@ from willowlabs.company_information.client import CompanyInformationClient
 import datetime as dt
 import csv
 
+
 org_list = [
     917813752,
     917813817,
@@ -73,13 +74,19 @@ org_list = [
     917819262,
 ]
 
+org_list = [
+    917813752,
+]
+
 
 def run_report(org_list=org_list):
+    import pandas as pd
+
     client = CompanyInformationClient("C:\\Users\\Sven\\projects\\client_config.yaml")
 
     roles_error_list = []
-    shares_error_list = []
-    basic_error_list = []
+    # shares_error_list = []
+    # basic_error_list = []
     # prokura_error_list = []
     # signature_error_list = []
 
@@ -87,15 +94,46 @@ def run_report(org_list=org_list):
         result = client.get_company_roles(org, query_date=dt.datetime.today())
         print(result)
         roles_error_list.append([org, result.server_error])
-        result = client.get_basic_company_information(org)
-        basic_error_list.append([org, result.server_error])
-        result = client.get_company_ownership(org, record_year=dt.datetime.today().year)
-        shares_error_list.append([org, result.server_error])
+        # result = client.get_basic_company_information(org)
+        # basic_error_list.append([org, result.server_error])
+        # result = client.get_company_ownership(org, record_year=dt.datetime.today().year)
+        # shares_error_list.append([org, result.server_error])
 
-    generate_report(roles_error_list)
+    roller_df = pd.DataFrame(
+        roles_error_list, columns=["Organisation Number", "Result"]
+    )
+    roller_df.insert(0, "Test case no.", roller_df.index)
+    # roller_df['Test case no.'] = roller_df.index
+    generate_report(roller_df)
 
 
-def generate_report(roles_error_list):
-    with open("../testing_out.csv", "w", newline="") as f:
-        writer = csv.writer(f)
-        writer.writerows(roles_error_list)
+def generate_report(roller_df=None):
+    from pathlib import Path
+    from jinja2 import Environment, FileSystemLoader
+
+    import pandas as pd
+
+    # roller_df = pd.DataFrame([[121212, 'Y'], [5555, 'N']])
+
+    template_vars = {
+        "title": "Test Suite Report - All endpoints",
+        "roller_table": "ssdsadasd" + roller_df.to_html(index=False),
+    }
+    data_folder = Path("")
+    file_to_open = data_folder / "testreport.html"
+    env = Environment(loader=FileSystemLoader("."), autoescape=True)
+
+    template = env.get_template(str(file_to_open))
+    html_out = template.render(template_vars)
+    print(html_out)
+
+    # with open("../testing_out.csv", "w", newline="") as f:
+    #     writer = csv.writer(f)
+    #     writer.writerows(roles_error_list)
+
+    Html_file = open("test_result.html", "w")
+    Html_file.write(html_out)
+    Html_file.close()
+
+
+generate_report(None)
