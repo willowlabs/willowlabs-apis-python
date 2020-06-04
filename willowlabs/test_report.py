@@ -100,7 +100,7 @@ def run_report(org_list=org_list):
         # shares_error_list.append([org, result.server_error])
 
     roller_df = pd.DataFrame(
-        roles_error_list, columns=["Organisation Number", "Result"]
+        roles_error_list, columns=["Organisation Number", "Server Error"]
     )
     roller_df.insert(0, "Test case no.", roller_df.index)
     # roller_df['Test case no.'] = roller_df.index
@@ -110,10 +110,6 @@ def run_report(org_list=org_list):
 def generate_report(roller_df=None):
     from pathlib import Path
     from jinja2 import Environment, FileSystemLoader
-
-    import pandas as pd
-
-    # roller_df = pd.DataFrame([[121212, 'Y'], [5555, 'N']])
 
     template_vars = {
         "title": "Test Suite Report - All endpoints",

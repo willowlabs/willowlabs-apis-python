@@ -8,6 +8,7 @@ service CompanyInformation {
   rpc get_company_roles(RoleRequest) returns (RoleResponse) {}
   rpc get_basic_company_information(BasicCompanyInformationRequest) returns (BasicCompanyInformationResponse) {}
   rpc get_company_signatory_information(SignatoryInformationRequest) returns (SignatoryInformationResponse) {}
+  rpc get_reelle_rettighetshaver(RettighetshaverInformationRequest) returns (RettighetshaverInformationResponse) {}
 }
 
 enum ShareClass {
@@ -76,7 +77,7 @@ message OwnershipResponse {
   repeated CompanyShares company_shares = 2;
   bool bad_request = 3;
   bool server_error = 4;
-  google.protobuf.Timestamp response_timestamp = 5;
+   google.protobuf.Timestamp response_timestamp = 5;
 }
 
 message Date {
@@ -135,7 +136,7 @@ message RoleResponse {
   bool complete_board_search = 4;
   bool bad_request = 5;
   bool server_error = 6;
-  google.protobuf.Timestamp response_timestamp = 7;
+   google.protobuf.Timestamp response_timestamp = 7;
 }
 
 message SectorCode {
@@ -226,7 +227,7 @@ message BasicCompanyInformationResponse {
   BasicCompanyInformation basic_company_information = 2;
   bool bad_request = 3;
   bool server_error = 4;
-   google.protobuf.Timestamp response_timestamp = 5;
+  google.protobuf.Timestamp response_timestamp = 5;
 }
 
 enum SignatoryAuthorityTypes {
@@ -248,6 +249,8 @@ message SignatoryInformationRequest {
   Date query_date = 3;
 }
 
+
+
 message AuthorizedSignature {
   string signatory_text_nb = 1;
   string signatory_text_en = 2;
@@ -264,4 +267,19 @@ message SignatoryInformationResponse {
   bool bad_request = 6;
   bool server_error = 7;
   google.protobuf.Timestamp response_timestamp = 8;
+}
+
+message RettighetshaverInformationResponse {
+  RettighetshaverInformationRequest request = 1;
+  repeated AuthorizedSignature authorized_signatures = 2;
+  string raw_signatory_text = 3;
+  bool no_signatory_records_found = 4;
+  bool fallback_results = 5;                // Results came from web scraping
+  bool bad_request = 6;
+  bool server_error = 7;
+  google.protobuf.Timestamp response_timestamp = 8;
+}
+
+message RettighetshaverInformationRequest {
+  int32 organisation_number = 1;
 }
