@@ -13,7 +13,7 @@ Willow Labs Python API's documentation
 
 Willow labs APIs offers services to get information regarding companies and related entities. The main companents are:
 
-* Information about the owners of a comapny. This service provides owners at all levels, meaning it recursively goes trough the ownership structure until a private owner is established.
+* Information about the owners of a company. This service provides owners at all levels, meaning it recursively goes trough the ownership structure until a private owner is established.
 * Basic company information as address, industry, number of employees and more.
 * Signature rights and prokura holders for a comapny.
 * Roles connected to the company, for example CEO, board members, accountant.
