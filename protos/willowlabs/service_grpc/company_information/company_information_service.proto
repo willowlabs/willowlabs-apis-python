@@ -40,7 +40,7 @@ message IndividualOwner {
   float percent_share = 5;
   float equivalent_shares = 6;
   int32 min_depth = 7;
-  int32 max_depth = 8;
+  int32 max_depth = 8;                                        // Deprecated
   repeated DirectOwnership direct_ownership = 9;
 }
 
@@ -99,11 +99,22 @@ message Address {
 
 enum Role {
   UNKNOWN_ROLE = 0;
-  CEO = 1;
-  CHAIRMAN = 2;
-  DEPUTY_CHAIRMAN = 3;
-  BOARD_MEMBER = 4;
-  DEPUTY_BOARD_MEMBER = 5;
+  CEO = 1;                              // Daglig leder
+  CHAIRMAN = 2;                         // Styrets leder
+  DEPUTY_CHAIRMAN = 3;                  // Nestleder
+  BOARD_MEMBER = 4;                     // Styremedlem
+  DEPUTY_BOARD_MEMBER = 5;              // Varamedlem (Depricated)
+  PROPRIETOR = 6;                       // Innehaver
+  CONTACT_PERSON = 7;                   // Kontaktperson
+  MANAGER = 8;                          // Forretningsfører
+  ACCOUNTANT = 9;                       // Regnskapsfører
+  TRUSTEE = 10;                         // Bostyrer
+  NORWEGIAN_REPRESENTATIVE = 11;        // Norsk repr. for utenl. enhet
+  AUDITOR = 12;                         // Revisor
+  OBSERVER = 13;                        // Observatør
+  PARTICIPANT_FULL_RESPONSIBILITY = 14; // Deltaker med fullt ansvar
+  PARTICIPANT_PART_RESPONSIBILITY = 15; // Deltaker med delt ansvar
+  ALTERNATE_BOARD_MEMBER = 16;          // Varamedlem
 }
 
 enum SpecialRole {
@@ -121,11 +132,16 @@ enum RoleAction {
 message CompanyOfficer {
   string name = 1;
   int32 birth_year = 2;
+  Date date_of_birth = 9;
+  int32 organisation_number = 8;
   Address address = 3;
   Role role = 4;
   SpecialRole special_role = 5;
   RoleAction role_action = 6;
   Date announcement_date = 7;
+  bool is_person = 10;
+  bool bad_date_of_birth = 11;
+  string raw_date_string = 12;
 }
 
 message RoleResponse {
@@ -188,7 +204,7 @@ message BasicCompanyInformation {
   int32 organisation_number = 1;                    // Organisasjonsnummer
   string company_name = 2;                          // Navn
   Date founded_date = 3;                            // Stiftelsesdato
-  Date registration_date = 4;                       // Segistreringsdato Enhetsregisteret
+  Date registration_date = 4;                       // Registreringsdato Enhetsregisteret
   CompanyType company_type = 5;                     // Organisasjonsform
   string website = 6;                               // Hjemmeside
   NonprofitRegistration nonprofit_registration= 7;  // Frivillighetsregisteret & MVA Registrert Beskrivelser
@@ -226,7 +242,7 @@ message BasicCompanyInformationResponse {
   BasicCompanyInformation basic_company_information = 2;
   bool bad_request = 3;
   bool server_error = 4;
-   google.protobuf.Timestamp response_timestamp = 5;
+  google.protobuf.Timestamp response_timestamp = 5;
 }
 
 enum SignatoryAuthorityTypes {
