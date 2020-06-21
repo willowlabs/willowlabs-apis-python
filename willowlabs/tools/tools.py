@@ -30,11 +30,10 @@ def load_client_configuration(configuration_path: str) -> CONFIG_TYPE:
             with open(configuration_path, "r") as stream:
                 configuration = yaml.safe_load(stream)
             svc_config = configuration.get("service")
-            auth = configuration.get("authentication")
-            if svc_config is not None and auth is not None and "issuer" in auth and \
+            if svc_config is not None and \
                     all(j in svc_config and k in svc_config[j]
                         for j, k in product(["production", "development"],
-                                            ["host", "api_key", "service_account_credentials"])):
+                                            ["host", "api_key", "service_account_credentials", "authentication"])):
                 return configuration
             raise KeyError("load_client_configuration: Configuration file is missing keys.")
         raise TypeError(f"load_client_configuration: The configuration file must be a yaml file or a json file "
