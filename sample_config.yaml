@@ -3,10 +3,13 @@ service:
     host: company-information.api.willowlabs.ai:443
     api_key: YOUR_PRODUCTION_API_KEY
     service_account_credentials: PATH_TO_YOUR_CREDENTIALS
+    authentication:
+      issuer: company-information-api-user@company-information-api.iam.gserviceaccount.com
+      audiences: company-information.api.willowlabs.ai
   development:
     host: company-information.dev.willowlabs.ai:443
     api_key: YOUR_DEVELOPMENT_API_KEY
     service_account_credentials: PATH_TO_DEVELOPMENT_CREDENTIALS
-authentication:
-  issuer: company-information-api-user@company-information-api.iam.gserviceaccount.com
-  audiences: company-information.api.willowlabs.ai
+    authentication:
+      issuer: company-information-dev-api-us@company-information-api.iam.gserviceaccount.com
+      audiences: company-information.dev.api.willowlabs.ai
