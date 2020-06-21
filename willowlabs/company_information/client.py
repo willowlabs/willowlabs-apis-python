@@ -52,8 +52,8 @@ class CompanyInformationClient:
         """
         self.configuration = tools.load_client_configuration(self.configuration_path)
         self.host = self.configuration["service"][self.service_type]["host"]
-        self.issuer = self.configuration["authentication"]["issuer"]
-        self.audiences = self.configuration["authentication"]["audiences"]
+        self.issuer = self.configuration["service"][self.service_type]["authentication"]["issuer"]
+        self.audiences = self.configuration["service"][self.service_type]["authentication"]["audiences"]
         self.api_key = self.configuration["service"][self.service_type]["api_key"]
 
     def load_credentials(self):
@@ -105,7 +105,7 @@ class CompanyInformationClient:
         return MessageToDict(ownership_information) if self.return_dict else ownership_information
 
     @_check_jwt
-    def get_company_roles(self, organisation_number: int, query_date: date) -> pb2.RoleResponse:
+    def get_company_roles(self, organisation_number: int, query_date: Optional[date] = None) -> pb2.RoleResponse:
         """
         Get the roles for a company.
         Args:
