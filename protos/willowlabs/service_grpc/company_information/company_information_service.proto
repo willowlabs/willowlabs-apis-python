@@ -8,6 +8,7 @@ service CompanyInformation {
   rpc get_company_roles(RoleRequest) returns (RoleResponse) {}
   rpc get_basic_company_information(BasicCompanyInformationRequest) returns (BasicCompanyInformationResponse) {}
   rpc get_company_signatory_information(SignatoryInformationRequest) returns (SignatoryInformationResponse) {}
+  rpc get_ultimate_beneficial_owners(UBORequest) returns (UBOResponse) {}
 }
 
 enum ShareClass {
@@ -280,4 +281,42 @@ message SignatoryInformationResponse {
   bool bad_request = 6;
   bool server_error = 7;
   google.protobuf.Timestamp response_timestamp = 8;
+}
+
+enum ShareControl {
+  UNKNOWN_CONTROL = 0;
+  MINORITY_CONTROL = 1;
+  MAJORITY_CONTROL = 2;
+  FULL_CORPORATE_CONTROL = 3;
+}
+
+message UBORequest {
+  int32 organisation_number = 1;
+  int32 record_year = 2;
+}
+
+message BeneficialOwner {
+  string name = 1;
+  Date date_of_birth = 2;
+  Address address = 3;
+  float percent_share = 4;
+  ShareControl share_control = 5;
+  Role role = 6;
+  string raw_date_string = 7;
+}
+
+message UltimateBeneficialOwners {
+  string isin = 1;
+  int64 total_shares = 2;
+  repeated BeneficialOwner beneficial_owners = 3;
+}
+
+message UBOResponse {
+  UBORequest request = 1;
+  string organisation_form = 2;
+  repeated UltimateBeneficialOwners ultimate_beneficial_owners = 3;
+  bool publicly_owned = 4;
+  bool bad_request = 5;
+  bool server_error = 6;
+  google.protobuf.Timestamp response_timestamp = 7;
 }
