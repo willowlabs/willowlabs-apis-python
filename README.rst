@@ -1,8 +1,8 @@
 .. image:: https://i.imgur.com/J2CGGYd.jpg
    :target: https://willowlabs.ai
-   :width: 1200px
+   :width: 400px
    :align: center
-   :height: 600px
+   :height: 400px
    :alt: Willow Labs logo
 
 Willow Labs Python API
@@ -15,6 +15,7 @@ Willow labs APIs offers services to get information regarding companies and rela
 * Basic company information as address, industry, number of employees and more.
 * Signature rights and prokura holders for a company.
 * Roles connected to the company, for example CEO, board members, accountant.
+* Ultimate Beneficial Owners of a company.
 
 Function summary
 ----------------
@@ -38,7 +39,8 @@ Function summary
 +-----------------------------------------+-------------------------------------------------------+-----------+-----------------------------------+
 | get_company_roles                       | Get all roles connect to a company.                   | English   |                                   |
 +-----------------------------------------+-------------------------------------------------------+-----------+-----------------------------------+
-
+| get_ultimate_beneficial_owners          | Get all ultimate beneficial owners                   | English   |                                   |
++-----------------------------------------+-------------------------------------------------------+-----------+-----------------------------------+
 \* The function is a Norwegian version of an english function - see english version column for information.
 
 
@@ -72,24 +74,29 @@ Using `Semantic Versioning 2.0.0`_.
 
 .. _Semantic Versioning 2.0.0: https://semver.org/
 
+[0.8.0] - 30.09.2020
+------------------------------
+
+* Added Ultimate Beneficial Ownership search.
+
 [0.5.4] - 16.04.2020
 ------------------------------
 
-Bugg fix
+Bug fix
 ^^^^^^^^
 * small bug fixes
 
 [0.5.4] - 16.04.2020
 ------------------------------
 
-Bugg fix
+Bug fix
 ^^^^^^^^
 * gcloud not authorized
 
 [0.5.1] - 16.04.2020
 ------------------------------
 
-Bugg fix
+Bug fix
 ^^^^^^^^
 * Readme file rendering error
 
@@ -146,9 +153,9 @@ First beta version: Basic functionality.
 License
 -------
 
-`MIT`_ © 2010-2020 Willow Labs
+`MIT`_ © 2020 Willow Labs
 
 .. _MIT: LICENSE
 
 
-Willow Labs
+Willow Labs AS
