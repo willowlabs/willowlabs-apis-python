@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+# Copyright 2020 Willow Labs AS. All rights reserved.
 from google.protobuf.json_format import MessageToDict
 from datetime import date, datetime
 from typing import Any, Dict, Optional, Union

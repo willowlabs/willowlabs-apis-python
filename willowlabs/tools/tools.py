@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+# Copyright 2020 Willow Labs AS. All rights reserved.
 import os
 import time
 import yaml
@@ -9,9 +11,19 @@ from google.oauth2.service_account import Credentials
 from google.auth.impersonated_credentials import Credentials as ImpersonatedCredentials
 from google.auth.transport.requests import Request
 from google.auth.iam import Signer
+from functools import wraps
 
 MAX_TOKEN_LIFETIME_SECS = 12 * 3600  # seconds
 CONFIG_TYPE = Dict[str, Union[str, Dict[str, str]]]
+
+
+def check_jwt(f):
+    @wraps(f)
+    def wrapped_function(self, *args, **kwargs):
+        if self.jwt is None or self.jwt_expires is None or self.jwt_expires < time.time():
+            self.get_json_web_token()
+        return f(self, *args, **kwargs)
+    return wrapped_function
 
 
 def load_client_configuration(configuration_path: str) -> CONFIG_TYPE:
