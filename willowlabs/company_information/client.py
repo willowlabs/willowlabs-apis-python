@@ -253,3 +253,24 @@ class CompanyInformationClient:
         """
         return self.get_company_signatory_information(organisation_number, pb2.SignatoryAuthorityTypes.SIGNATUR,
                                                       query_date=query_date)
+
+    @_check_jwt
+    def get_ultimate_beneficial_owners(self, organisation_number: int,
+                                       record_year: Optional[int] = None) -> pb2.UBOResponse:
+        """
+        Get the ultimate beneficial owners for a company.
+        Args:
+            organisation_number: The organization number for the company being queried.
+            record_year: For companies whose UBO relies on ownership, this argument selects the year for
+            which the ownership records
+
+        Returns:
+            The ultimate beneficial owners for the company.
+        """
+        with grpc.secure_channel(self.host, grpc.ssl_channel_credentials()) as channel:
+            stub = pb2_grpc.CompanyInformationStub(channel)
+            metadata = [("authorization", f"Bearer {self.jwt}"), ("x-api-key", self.api_key)]
+            request = pb2.UBORequest(organisation_number=organisation_number,
+                                     record_year=record_year)
+            ubos = stub.get_ultimate_beneficial_owners(request, self.timeout, metadata=metadata)
+        return MessageToDict(ubos) if self.return_dict else ubos
