@@ -309,6 +309,7 @@ message UltimateBeneficialOwners {
   string isin = 1;
   int64 total_shares = 2;
   repeated BeneficialOwner beneficial_owners = 3;
+  ShareControl public_share_control = 4;
 }
 
 message UBOResponse {
