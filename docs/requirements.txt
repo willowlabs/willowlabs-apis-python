@@ -2,5 +2,5 @@ sphinx-autodoc-typehints
 google-api-python-client==1.8.0
 grpcio==1.27.2
 grpcio-tools==1.27.2
-PyYAML==5.3
+PyYAML==5.4
 setuptools==41.0.1
